@@ -1,0 +1,4 @@
+{"ts":1377869618002,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1377869696207,"patch":[[{"diffs":[[1,"(function(S){\n\tS.ManagerReportController = function($scope){}\n})(Simple);"]],"start1":0,"start2":0,"length1":0,"length2":73}]],"length":73,"saved":false}
+{"ts":1377869997070,"patch":[[{"diffs":[[0,"$scope){"],[1,"\n\t    $scope.$parent.title = \"סריקת מנהל\";\n\t"],[0,"}\n})(Sim"]],"start1":52,"start2":52,"length1":16,"length2":60}]],"length":117,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1377870149052,"patch":[[{"diffs":[[0,"    "],[-1,"$scope.$parent.title = \"סריקת מנהל\";"],[0,"\n\t}\n"]],"start1":62,"start2":62,"length1":44,"length2":8}]],"length":81,"saved":false}

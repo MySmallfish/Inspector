@@ -1,0 +1,5 @@
+{"ts":1377813002152,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1377813070228,"patch":[[{"diffs":[[1,"<h1>Home</h1>"]],"start1":0,"start2":0,"length1":0,"length2":13}]],"length":13,"saved":false}
+{"ts":1377813248336,"patch":[[{"diffs":[[0,"ome</h1>"],[1,"\n<h2>{{ test }}</h2>"]],"start1":5,"start2":5,"length1":8,"length2":28}]],"length":33,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1377873061991,"patch":[[{"diffs":[[0,"<"],[-1,"h1>Home</h1>\n<h2>{{ tes"],[1,"ul class=\"layout buttons-menu\">\n    <li ng-repeat=\"action in actions\">\n        <button class=\"btn btn-block btn-lg\" ng-class=\"{'btn-primary': action.isPrimary}\" ng-click=\"run(action.command);\">{{ action.tex"],[0,"t }}</"],[-1,"h2"],[1,"button>\n    </li>\n</ul"],[0,">"]],"start1":0,"start2":0,"length1":33,"length2":236}]],"length":236,"saved":false}
+{"ts":1377873483363,"patch":[[{"diffs":[[0,"sPrimary"],[1,", 'btn-danger': action.isDanger"],[0,"}\" ng-cl"]],"start1":151,"start2":151,"length1":16,"length2":47}]],"length":267,"saved":false}

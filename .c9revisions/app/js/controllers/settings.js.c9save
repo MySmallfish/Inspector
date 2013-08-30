@@ -1,0 +1,3 @@
+{"ts":1377873789490,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1377873858481,"patch":[[{"diffs":[[1,"(function(S){\n\tS.TimeReportsController = function($scope){\n    \n\t}\n})(Simple);"]],"start1":0,"start2":0,"length1":0,"length2":78}]],"length":78,"saved":false}
+{"ts":1377873871144,"patch":[[{"diffs":[[0,"\n\tS."],[-1,"TimeReport"],[1,"Setting"],[0,"sCon"]],"start1":13,"start2":13,"length1":18,"length2":15}]],"length":75,"saved":false}

@@ -1,0 +1,5 @@
+{"ts":1377869701669,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1377869766121,"patch":[[{"diffs":[[1,"(function(S){\n\tS.ManualReportController = function($scope){}\n})(Simple);"]],"start1":0,"start2":0,"length1":0,"length2":72}]],"length":72,"saved":false}
+{"ts":1377869770988,"patch":[[{"diffs":[[0,"\n\tS."],[-1,"Manual"],[1,"Scan"],[0,"Repo"]],"start1":13,"start2":13,"length1":14,"length2":12}]],"length":70,"saved":false}
+{"ts":1377869970290,"patch":[[{"diffs":[[0,"$scope){"],[1,"\n\t    $scope.$parent.title = \"סריקת ברקוד לדיווח\";\n\t"],[0,"}\n})(Sim"]],"start1":49,"start2":49,"length1":16,"length2":68}]],"length":122,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1377870171506,"patch":[[{"diffs":[[0,"e){\n"],[-1,"\t    $scope.$parent.title = \"סריקת ברקוד לדיווח\";\n"],[0,"\t}\n}"]],"start1":54,"start2":54,"length1":58,"length2":8}]],"length":72,"saved":false}

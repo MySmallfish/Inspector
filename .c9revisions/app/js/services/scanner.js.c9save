@@ -1,0 +1,3 @@
+{"ts":1377970334377,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1377970428472,"patch":[[{"diffs":[[1,"(function(S){\n\tS.Scanner = function(){\n    \n\t}\n})(Simple);"]],"start1":0,"start2":0,"length1":0,"length2":58}]],"length":58,"saved":false}
+{"ts":1377971392749,"patch":[[{"diffs":[[0,"ion("],[-1,"){\n    "],[1,"$rootScope){\n        function simulateScan(barCode){\n            \n        }\n        \n        function acceptBarcode(barCode){\n            $rootScope.$emit(\"Simple.BarcodeScanned\", { barCode: barCode });\n        }"],[0,"\n\t}\n"]],"start1":32,"start2":32,"length1":15,"length2":220}]],"length":263,"saved":false}

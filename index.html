@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="he" ng-app="InspectorApp">
 <head>
@@ -12,7 +12,6 @@
 	<link tpe="text/css" rel="stylesheet" href="app/css/app.css"/>
 </head>
     <body class="rtl" ng-controller="AppCtrl">
-        <h1>HELLO</h1>
         <nav class="navbar navbar-default navbar-static-top navbar-inverse">
             <p class="navbar-text">{{ title }}</p>
             <button type="button" class="btn btn-default navbar-btn" ng-click="goBack()" ng-show="hasBack">חזור</button>
@@ -27,11 +26,16 @@
 
         <script type="text/javascript" src="app/js/simple.js"></script>
         <!-- Services -->
+        <script type="text/javascript" src="app/js/services/scanner.js"></script>
         <script type="text/javascript" src="app/js/services/storage-service.js"></script>
         <script type="text/javascript" src="app/js/services/remote-data-service.js"></script>
 		
         <script type="text/javascript" src="app/js/services/login-manager.js"></script>
         <script type="text/javascript" src="app/js/services/time-report-manager.js"></script>
+		
+		<!-- Filters -->
+		<script type="text/javascript" src="app/js/filters/site-description.js"></script>
+		<script type="text/javascript" src="app/js/filters/gps-location.js"></script>
 		
         <!-- Directives -->
         <script type="text/javascript" src="app/js/directives/command.js"></script>

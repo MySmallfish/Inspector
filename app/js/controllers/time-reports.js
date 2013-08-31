@@ -1,5 +1,6 @@
 (function(S){
-	S.TimeReportsController = function($scope){
-    
+	S.TimeReportsController = function($scope, scanner, timeReportManager){
+        
+
 	}
 })(Simple);

@@ -1,10 +1,5 @@
 (function(S) {
     S.ScanReportController = function($scope, $location, scanner, timeReportManager) {
-
-
-        scanner.scan();
-        
-
         function onTimeReported(info) {
             if (info.success) {
                 $location.path("/ApproveReport").search({ reportId: info.reportId });
@@ -18,7 +13,8 @@
 
         $scope.$on("Simple.BarcodeScanned", onBarcodeScanned);
 
-        $scope.simulateScan = function() {
+        scanner.scan();
+        $scope.simulateScan = function () {
             scanner.simulate($scope.barCode);
         };
         

@@ -7,7 +7,7 @@
         }
 
         function onBarcodeScanned(barCode) {
-
+            alert("BC" + barCode);
             timeReportManager.reportByCode(barCode).then(onTimeReported);
         }
 

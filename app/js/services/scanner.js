@@ -6,16 +6,16 @@
         }
 
         function scan() {
-            if (cordova) {
+            if (typeof cordova !== "undefined") {
                 var scanner = cordova.require("cordova/plugin/BarcodeScanner");
                 scanner.scan(function (result) {
-                    alert("Barcode:" + result.text);
                     acceptBarcode(result.text);
                 });
             }
         }
 
         function acceptBarcode(barCode) {
+            
             $rootScope.$broadcast("Simple.BarcodeScanned", barCode);
         }
 

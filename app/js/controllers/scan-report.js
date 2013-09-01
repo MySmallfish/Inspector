@@ -1,19 +1,24 @@
 (function(S) {
-    S.ScanReportController = function($scope, $location, scanner, timeReportManager) {
+    S.ScanReportController = function($scope, $location, scanner, timeReportManager,$route) {
         function onTimeReported(info) {
             if (info.success) {
                 $location.path("/ApproveReport").search({ reportId: info.reportId });
             }
         }
 
-        function onBarcodeScanned(barCode) {
-            alert("BC" + barCode);
-            timeReportManager.reportByCode(barCode).then(onTimeReported);
+        function onBarcodeScanned(e, barCode) {
+            if (barCode && barCode.length > 0) {
+                timeReportManager.reportByCode(barCode).then(onTimeReported);
+            } else {
+                $route.reload();
+            }
         }
 
+        $scope.barCode = "";
         $scope.$on("Simple.BarcodeScanned", onBarcodeScanned);
 
         scanner.scan();
+        
         $scope.simulateScan = function () {
             scanner.simulate($scope.barCode);
         };

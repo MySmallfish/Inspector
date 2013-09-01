@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="he" ng-app="InspectorApp">
 <head>
@@ -14,7 +14,8 @@
     <body class="rtl" ng-controller="AppCtrl">
         <nav class="navbar navbar-default navbar-static-top navbar-inverse">
             <p class="navbar-text">{{ title }}</p>
-            <button type="button" class="btn btn-default navbar-btn" ng-click="goBack()" ng-show="hasBack">חזור</button>
+            <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goBack()" ng-show="hasBack">חזור</button>
+            <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goHome()" ng-show="hasHome">ראשי</button>
         </nav>
         <div class="container">
             <ng-view></ng-view>

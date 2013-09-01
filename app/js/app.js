@@ -16,6 +16,8 @@
 	app.controller("ReportCtrl", S.ReportController);
 	app.controller("TimeReportsCtrl", S.TimeReportsController);
 	app.controller("ScanReportCtrl", S.ScanReportController);
+	app.controller("ManualReportCtrl", S.ManualReportController);
+	
 	
 	app.config(function($routeProvider){
 		$routeProvider

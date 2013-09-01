@@ -2,7 +2,7 @@
     <dt>תאריך:</dt>
     <dd>{{ timeReport.Date|date:"dd/MM/yyyy" }}</dd>
     <dt>שעה:</dt>
-    <dd>{{ timeReport.Time|date:"HH:mm" }}</dd>
+    <dd>{{ timeReport.Date|date:"HH:mm" }}</dd>
     <dt>אתר:</dt>
     <dd>{{ timeReport.Site | siteDescription }}</dd>    
     <dt>מיקום:</dt>
@@ -10,11 +10,12 @@
 </dl>
 <div class="row">
     <div class="col-xs-4">
-        <button type="button" class="btn btn-block btn-danger" ng-click="repair()">תיקון</button>
+        <button type="button" class="btn btn-block btn-success" ng-click="approve()">אישור</button>
+        
     </div>
     <div class="col-xs-4"></div>
     <div class="col-xs-4">
-        <button type="button" class="btn btn-block btn-success" ng-click="approve()">אישור</button>
+        <button type="button" class="btn btn-block btn-danger" ng-click="repair()">תיקון</button>
     </div>
     
 </div>

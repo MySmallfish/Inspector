@@ -1,0 +1,5 @@
+﻿<ul class="layout buttons-menu">
+    <li ng-repeat="action in actions">
+        <button class="btn btn-block btn-lg btn-default" ng-class="{'btn-primary': action.isPrimary, 'btn-danger': action.isDanger, 'btn-success': action.isSuccess }" ng-click="run(action.command);">{{ action.text }}</button>
+    </li>
+</ul>

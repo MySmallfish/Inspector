@@ -3,7 +3,7 @@
 	   console.log($location.search().reportId);
 	   $scope.timeReport = {
 	       Date: new Date(),
-	       Time: new Date(),
+	       IsEnter: true,
 	       Site: {
 	           Id: 1,
 	           Name: "כניסה ראשים"

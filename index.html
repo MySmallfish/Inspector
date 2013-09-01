@@ -2,57 +2,60 @@
 
 <html lang="he" ng-app="InspectorApp">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="app-version" content="4.6.1.15240"/>
-	<title>Inspector</title>
-	<link tpe="text/css" rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
-	<link tpe="text/css" rel="stylesheet" href="app/css/app.css"/>
+    <meta name="app-version" content="1.0.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Inspector</title>
+    <link tpe="text/css" rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link tpe="text/css" rel="stylesheet" href="app/css/app.css" />
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="barcodescanner.js"></script>
 </head>
-    <body class="rtl" ng-controller="AppCtrl">
-        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-            <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goHome()" ng-show="hasHome">ראשי</button>
-            <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goBack()" ng-show="hasBack">חזור</button>
-            <p class="navbar-text pull-right">{{ title }}</p>
-        </nav>
-        <div class="container">
-            <ng-view></ng-view>
-        </div>	
-        <script type="text/javascript" src="lib/angular/angular.js"></script>
-        <script type="text/javascript" src="lib/angular/angular-touch.js"></script>
-        <script type="text/javascript" src="lib/angular/angular-route.js"></script>
-        <script type="text/javascript" src="lib/angular-strap/angular-strap.min.js"></script>
+<body class="rtl" ng-controller="AppCtrl">
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+        <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goHome()" ng-show="hasHome">ראשי</button>
+        <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goBack()" ng-show="hasBack">חזור</button>
+        <p class="navbar-text pull-right">{{ title }}</p>
+    </nav>
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-touch.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-route.js"></script>
+    <script type="text/javascript" src="lib/angular-strap/angular-strap.min.js"></script>
 
-        <script type="text/javascript" src="app/js/simple.js"></script>
-        <!-- Services -->
-        <script type="text/javascript" src="app/js/services/scanner.js"></script>
-        <script type="text/javascript" src="app/js/services/storage-service.js"></script>
-        <script type="text/javascript" src="app/js/services/remote-data-service.js"></script>
-		
-        <script type="text/javascript" src="app/js/services/login-manager.js"></script>
-        <script type="text/javascript" src="app/js/services/time-report-manager.js"></script>
-		
-		<!-- Filters -->
-		<script type="text/javascript" src="app/js/filters/site-description.js"></script>
-		<script type="text/javascript" src="app/js/filters/gps-location.js"></script>
-		
-        <!-- Directives -->
-        <script type="text/javascript" src="app/js/directives/command.js"></script>
-		
-        <!-- Controllers -->
-        <script type="text/javascript" src="app/js/controllers/app.js"></script>
-        <script type="text/javascript" src="app/js/controllers/login.js"></script>
-        <script type="text/javascript" src="app/js/controllers/home.js"></script>
-		
-        <script type="text/javascript" src="app/js/controllers/report.js"></script>
-        <script type="text/javascript" src="app/js/controllers/scan-report.js"></script>
-        <script type="text/javascript" src="app/js/controllers/manual-report.js"></script>
-        <script type="text/javascript" src="app/js/controllers/manager-report.js"></script>
-        <script type="text/javascript" src="app/js/controllers/time-reports.js"></script>
-		
-        <!-- App Bootstrap -->
-        <script type="text/javascript" src="app/js/app.js"></script>
-    </body>
+    <script type="text/javascript" src="app/js/simple.js"></script>
+    <!-- Services -->
+    <script type="text/javascript" src="app/js/services/scanner.js"></script>
+    <script type="text/javascript" src="app/js/services/storage-service.js"></script>
+    <script type="text/javascript" src="app/js/services/remote-data-service.js"></script>
+
+    <script type="text/javascript" src="app/js/services/login-manager.js"></script>
+    <script type="text/javascript" src="app/js/services/time-report-manager.js"></script>
+
+    <!-- Filters -->
+    <script type="text/javascript" src="app/js/filters/site-description.js"></script>
+    <script type="text/javascript" src="app/js/filters/gps-location.js"></script>
+
+    <!-- Directives -->
+    <script type="text/javascript" src="app/js/directives/command.js"></script>
+
+    <!-- Controllers -->
+    <script type="text/javascript" src="app/js/controllers/app.js"></script>
+    <script type="text/javascript" src="app/js/controllers/login.js"></script>
+    <script type="text/javascript" src="app/js/controllers/home.js"></script>
+
+    <script type="text/javascript" src="app/js/controllers/report.js"></script>
+    <script type="text/javascript" src="app/js/controllers/scan-report.js"></script>
+    <script type="text/javascript" src="app/js/controllers/manual-report.js"></script>
+    <script type="text/javascript" src="app/js/controllers/manager-report.js"></script>
+    <script type="text/javascript" src="app/js/controllers/time-reports.js"></script>
+
+    <!-- App Bootstrap -->
+    <script type="text/javascript" src="app/js/app.js"></script>
+</body>
 </html>

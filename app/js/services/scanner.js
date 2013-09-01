@@ -1,21 +1,27 @@
-(function(S){
-	S.Scanner = function($rootScope){
-        function simulateScan(barCode){
+(function(S) {
+    S.Scanner = function($rootScope) {
+
+        function simulateScan(barCode) {
             acceptBarcode(barCode);
         }
-        
-        function acceptBarcode(barCode){
+
+        function scan() {
+            if (cordova) {
+                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+                scanner.scan(function(result) {
+                    acceptBarcode(result.text);
+                });
+            }
+        }
+
+        function acceptBarcode(barCode) {
             $rootScope.$broadcast("Simple.BarcodeScanned", barCode);
         }
-        
-        function initialize(){
-            
-        }
-        
-        initialize();
-        
+
+
         return {
-            simulate: simulateScan
+            simulate: simulateScan,
+            scan: scan
         };
-	}
+    };
 })(Simple);

@@ -47,5 +47,5 @@
   --><!--
 
   <gap:splash src="img/ios/tablet.png"    gap:platform="ios"     width="320" height="480" />-->
-
+  <gap:plugin name="BarcodeScanner" />
 </widget>

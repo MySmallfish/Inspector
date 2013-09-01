@@ -17,7 +17,6 @@
         }
 
         function acceptBarcode(barCode) {
-            
             $rootScope.$broadcast("Simple.BarcodeScanned", barCode);
         }
 

@@ -6,7 +6,8 @@
             }
         }
 
-        function onBarcodeScanned(e, barCode) {
+        function onBarcodeScanned(barCode) {
+            
             $scope.barCode = barCode;
             if (barCode && barCode.length > 0) {
                 timeReportManager.reportByCode(barCode).then(onTimeReported);
@@ -15,7 +16,16 @@
             }
         }
 
-        $scope.$on("Simple.BarcodeScanned", onBarcodeScanned);
+        $scope.$on("Simple.BarcodeScanned",
+            function(e, barCode) {
+                if (!$scope.$$phase) {
+                    $scope.$apply(function() {
+                        onBarcodeScanned(barCode);
+                    });
+                } else {
+                    onBarcodeScanned(barCode);
+                }
+            });
 
         scanner.scan();
         

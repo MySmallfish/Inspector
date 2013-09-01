@@ -9,7 +9,9 @@
             if (typeof cordova !== "undefined") {
                 var scanner = cordova.require("cordova/plugin/BarcodeScanner");
                 scanner.scan(function (result) {
-                    acceptBarcode(result.text);
+                    if (result.text && !result.cancelled) {
+                        acceptBarcode(result.text);
+                    }
                 });
             }
         }

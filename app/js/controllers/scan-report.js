@@ -7,6 +7,7 @@
         }
 
         function onBarcodeScanned(e, barCode) {
+            $scope.barCode = barCode;
             if (barCode && barCode.length > 0) {
                 timeReportManager.reportByCode(barCode).then(onTimeReported);
             } else {
@@ -14,7 +15,6 @@
             }
         }
 
-        $scope.barCode = "";
         $scope.$on("Simple.BarcodeScanned", onBarcodeScanned);
 
         scanner.scan();

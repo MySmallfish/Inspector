@@ -24,12 +24,13 @@
 	        },
 {
 	            command: "Settings",
-	            text: "הגדרות"
+	            text: "הגדרות",
+	            half: true
 	        },	        
 	        {
 	            command: "Login",
 	            text: "יציאה",
-	            isDanger: true
+	            half: true
 	        }
 	        
 

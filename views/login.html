@@ -1,20 +1,21 @@
-<form class="form-horizontal" role="form" sf-command="Login">
-  <div class="form-group">
-    <label for="Username" class="control-label">שם משתמש</label>
-    <div class="col-lg-10">
-      <input type="text" class="form-control" id="Username" placeholder="שם משתמש" ng-model="Username">
+<form novalidate name="theLoginForm"  ng-submit="login();" class="form-horizontal">
+    <h1>Invalid? {{ theLoginForm.$invalid }}</h1>
+    <div class="form-group">
+        <label for="Username" class="control-label">שם משתמש</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="Username" name="Username" placeholder="שם משתמש" ng-model="Username" required maxlength="200">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="Password" class="control-label">סיסמה</label>
-    <div class="col-lg-10">
-      <input type="password" class="form-control" id="Password" placeholder="סיסמה" ng-model="Password">
+    <div class="form-group">
+        <label for="Password" class="control-label">סיסמה</label>
+        <div class="col-lg-10">
+            <input type="password" class="form-control" id="Password" name="Password" placeholder="סיסמה" ng-model="Password"  required maxlength="15">
+        </div>
     </div>
-  </div>
   
-  <div class="form-group">
-    <div class="col-lg-10">
-      <button type="button" ng-click="login()" class="btn btn-default">כניסה</button>
+    <div class="form-group">
+        <div class="col-lg-10">
+            <button type="submit" ng-disabled="theLoginForm.$invalid" class="btn btn-default">כניסה</button>
+        </div>
     </div>
-  </div>
 </form>

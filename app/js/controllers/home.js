@@ -37,10 +37,12 @@
 
         ];
 	    
-		if (!loginManager.isUserLoggedIn()){
-			location.href = "#/Login";
-		}
-		
+			
+	    loginManager.isUserLoggedIn().then(function(){
+	        
+	    }, function(){
+	        location.href = "#/Login";
+	    });
 		$scope.run = function(command){
 		    location.href = "#/" + command;
 		}

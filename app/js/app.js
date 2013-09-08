@@ -1,7 +1,9 @@
 (function(S){
 	var app = angular.module("InspectorApp", ["ngRoute","$strap"]);
 
+    app.service("utils", S.Utilities);
     app.service("scanner", S.Scanner);
+    app.service("geoLocation", S.GeoLocationService);
 	app.service("storageService", S.StorageService);
 	app.service("loginManager", S.LoginManager);
 	app.service("remoteDataService", S.RemoteDataService);

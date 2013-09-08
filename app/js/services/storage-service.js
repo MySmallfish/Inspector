@@ -1,4 +1,4 @@
-(function(S) {
+(function (S) {
     S.StorageService = function ($q) {
         var prefix = "";
         function deserialize(value) {
@@ -13,20 +13,45 @@
         }
         var wrappers = {
             session: {
-                get: function(key) {
+                get: function (key) {
                     return deserialize(sessionStorage.getItem(key));
                 },
-                set: function(key, value) {
-                    return serialize(value).then(function(serializedValue) {
-                        sessionStorage.setItem(key, serializedValue);
-                        return serializedValue;
-                    });
+                set: function (key, value) {
+                    if (value === null) {
+                        var result = $q.defer();
+                        sessionStorage.removeItem(key);
+                        result.resolve(key);
+                        return result.promise;
+                    } else {
+                        return serialize(value).then(function (serializedValue) {
+                            sessionStorage.setItem(key, serializedValue);
+                            return serializedValue;
+                        });
+                    }
                 }
-            }    
+            },
+            local: {
+                get: function (key) {
+                    return deserialize(localStorage.getItem(key));
+                },
+                set: function (key, value) {
+                    if (value === null) {
+                        var result = $q.defer();
+                        localStorage.removeItem(key);
+                        result.resolve(key);
+                        return result.promise;
+                    } else {
+                        return serialize(value).then(function (serializedValue) {
+                            localStorage.setItem(key, serializedValue);
+                            return serializedValue;
+                        });
+                    }
+                }
+            }
         };
 
         function item(type, key, value) {
-            
+
             var wrapper = wrappers[type];
             if (wrapper) {
                 key = (prefix || "") + ":" + key;
@@ -39,12 +64,15 @@
                 throw new Error("Storage Type '" + type + "' is not configured.");
             }
         }
-        
+
         return {
-            session: function(key, value) {
+            session: function (key, value) {
                 return item("session", key, value);
             },
-            prefix: function(newPrefix) {
+            local: function (key, value) {
+                return item("local", key, value);
+            },
+            prefix: function (newPrefix) {
                 if (typeof newPrefix !== "undefined") {
                     prefix = newPrefix;
                     return this;

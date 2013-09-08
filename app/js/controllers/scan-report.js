@@ -27,8 +27,11 @@
                 }
             });
 
-        scanner.scan();
-        
+        $scope.scanSupported = scanner.isScannerSupported();
+        if ($scope.scanSupported) {
+            scanner.scan();
+        }
+
         $scope.simulateScan = function () {
             scanner.simulate($scope.barCode);
         };

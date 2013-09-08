@@ -5,9 +5,17 @@
             acceptBarcode(barCode);
         }
 
+        var scanner;
+        if (typeof cordova !== "undefined") {
+            scanner = cordova.require("cordova/plugin/BarcodeScanner");
+        }
+
+        function isScannerSupported() {
+            return scanner;
+        }
+        
         function scan() {
-            if (typeof cordova !== "undefined") {
-                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+            if (isScannerSupported()){
                 scanner.scan(function (result) {
                     if (result.text && !result.cancelled) {
                         acceptBarcode(result.text);
@@ -23,7 +31,8 @@
 
         return {
             simulate: simulateScan,
-            scan: scan
+            scan: scan,
+            isScannerSupported: isScannerSupported
         };
     };
 })(Simple);

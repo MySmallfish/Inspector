@@ -1,8 +1,11 @@
-﻿(function(S) {
+(function(S) {
     S.TimeReportManager = function ($q, storageService, utils, geoLocation) {
 
+        function items(){
+            return storageService.prefix("Inspector").local("items");
+        }
         function queue(item) {
-            return storageService.prefix("Inspector").local("items").then(function (items) {
+            return items().then(function (items) {
                 items = items || [];
                 items.push(item);
                 return storageService.prefix("Inspector").local("items", items).then(function() {
@@ -51,32 +54,21 @@
                 Date: new Date(),
                 Site: getCurrentSite()
             }, reportInfo);
-            var r = $q.defer();
-            var promise =
-                geoLocation.get().then(function(locationInfo) {
-                    console.log("SUCCESS", locationInfo);
-                    return storeReportInfo(reportInfo).then(function (ri) {
-                        return ri;
-                    });
-                }, function(e) {
-                    console.log("FAIL", e);
-                    return storeReportInfo(reportInfo).then(function(ri) {
-                        return ri;
-                    });
-                });
-            //var promise = geoLocation.get().then(function (locationInfo) {
-            //    console.log(JSON.stringify(locationInfo));
-            //    alert(JSON.strinify(locationInfo));
-            //    reportInfo.Location = {};
-            //    return storeReportInfo(reportInfo);
-            //}, function (error) {
-            //    console.log("ERROR");
-            //    if (!locationIsMandatory) {
-            //        return storeReportInfo(reportInfo);
-            //    } else {
-            //        return { success: false, reportId: reportInfo.UniqueId };
-            //    }
-            //});
+
+            var promise = geoLocation.get().then(function (locationInfo) {
+               
+                reportInfo.Location = {
+                    Longitude: locationInfo.longitude,
+                    Latitude: locationInfo.latitude
+                };
+                return storeReportInfo(reportInfo);
+            }, function (error) {
+                if (!locationIsMandatory) {
+                    return storeReportInfo(reportInfo);
+                } else {
+                    return { success: false, reportId: reportInfo.UniqueId };
+                }
+            });
 
             return promise;
         }
@@ -84,11 +76,16 @@
         function reportByCode(barCode) {
             return reportTime({ barCode: barCode });
         }
+        
+        function getTimeReports(){
+            return items();
+        }
 
         return {
             reportByCode: reportByCode,
             report: reportTime,
             approve: approveTimeReport,
+            getTimeReports: getTimeReports,
             get: retrieve
         };
     };

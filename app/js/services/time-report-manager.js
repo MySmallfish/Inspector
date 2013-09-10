@@ -51,19 +51,32 @@
                 Date: new Date(),
                 Site: getCurrentSite()
             }, reportInfo);
-
-            var promise = geoLocation.get().then(function (locationInfo) {
-                console.log("loc info");
-                reportInfo.Location = {};
-                return storeReportInfo(reportInfo);
-            }, function (error) {
-                console.log("ERR", this, error);
-                if (!locationIsMandatory) {
-                    return storeReportInfo(reportInfo);
-                } else {
-                    return { success: false, reportId: reportInfo.UniqueId };
-                }
-            });
+            var r = $q.defer();
+            var promise =
+                geoLocation.get().then(function(locationInfo) {
+                    console.log("SUCCESS", locationInfo);
+                    return storeReportInfo(reportInfo).then(function (ri) {
+                        return ri;
+                    });
+                }, function(e) {
+                    console.log("FAIL", e);
+                    return storeReportInfo(reportInfo).then(function(ri) {
+                        return ri;
+                    });
+                });
+            //var promise = geoLocation.get().then(function (locationInfo) {
+            //    console.log(JSON.stringify(locationInfo));
+            //    alert(JSON.strinify(locationInfo));
+            //    reportInfo.Location = {};
+            //    return storeReportInfo(reportInfo);
+            //}, function (error) {
+            //    console.log("ERROR");
+            //    if (!locationIsMandatory) {
+            //        return storeReportInfo(reportInfo);
+            //    } else {
+            //        return { success: false, reportId: reportInfo.UniqueId };
+            //    }
+            //});
 
             return promise;
         }

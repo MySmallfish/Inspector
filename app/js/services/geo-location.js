@@ -4,7 +4,6 @@
         function getLocation() {
             var result = $q.defer();
             navigator.geolocation.getCurrentPosition(result.resolve, result.reject);
-            
             return result.promise;
         }
 

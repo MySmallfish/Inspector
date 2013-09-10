@@ -1,8 +1,11 @@
 (function(S) {
     S.ScanReportController = function($scope, $location, scanner, timeReportManager,$route) {
         function onTimeReported(info) {
+            console.log("REPORT!", info);
             if (info.success) {
                 $location.path("/ApproveReport").search({ reportId: info.reportId });
+            } else {
+                console.log("ERROR!");
             }
         }
 
@@ -10,7 +13,9 @@
             
             $scope.barCode = barCode;
             if (barCode && barCode.length > 0) {
-                timeReportManager.reportByCode(barCode).then(onTimeReported);
+                timeReportManager.reportByCode(barCode).then(onTimeReported, function (e) {
+                    console.log("ERRRRRR", e);
+                });
             } else {
                 $route.reload();
             }

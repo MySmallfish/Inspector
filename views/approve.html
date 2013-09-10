@@ -5,6 +5,8 @@
     <dd>{{ timeReport.Date|date:"HH:mm" }}</dd>
     <dt>אתר:</dt>
     <dd>{{ timeReport.Site | siteDescription }}</dd>    
+    <dt>בר-קוד:</dt>
+    <dd>{{ timeReport.barCode }}</dd>    
     <dt>מיקום:</dt>
     <dd>{{ timeReport.Location | gpsLocation }}</dd>    
 </dl>

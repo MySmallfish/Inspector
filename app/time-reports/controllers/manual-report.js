@@ -26,7 +26,7 @@
         }
 
         $scope.changeHeader({
-            header: "ManualReport",
+            header: "EnterSiteCode",
             back: true
         });
 

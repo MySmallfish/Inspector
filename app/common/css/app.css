@@ -1,5 +1,12 @@
+.container {
+    margin-top: 4em;
+}
+.btn {
+    font-size: 14pt;
+}
 body.rtl {
     direction: rtl;
+    
 }
 
 .rtl .control-label {

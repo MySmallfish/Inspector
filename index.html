@@ -14,19 +14,17 @@
     <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="lib/simple/css/select-box.css" />
     <link rel="stylesheet" type="text/css" href="app/common/directives/numpad/numpad.css" />
+    <link rel="stylesheet" type="text/css" href="app/common/directives/app-header/app-header.css" />
     <link rel="stylesheet" type="text/css" href="lib/simple/directives/scan-barcode/scan-barcode.css" />
 
     <link type="text/css" rel="stylesheet" href="app/common/css/app.css" />
+    
 
     <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="barcodescanner.js"></script>
 </head>
 <body class="rtl" ng-controller="AppCtrl">
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-        <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goHome()" ng-show="hasHome">ראשי</button>
-        <button type="button" class="btn btn-default navbar-btn pull-right back-button" ng-click="goBack()" ng-show="hasBack">חזור</button>
-        <p class="navbar-text pull-right">{{ title }}</p>
-    </nav>
+    <app-header></app-header>
     <div data-ng-view class="container">
     </div>
 
@@ -36,7 +34,7 @@
     <script src="lib/jquery/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <!--<script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.he.js"></script>-->
+        <script type="text/javascript" src="lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.he.js"></script>-->
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-resource.js"></script>

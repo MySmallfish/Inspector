@@ -17,8 +17,13 @@
             "Site":"עמדה / אתר",
             "Location":"מיקום (GPS)",
             "Employee":"עובד",
-            "BarCode":"בר קוד",
-            "Type":"סוג"
+            "BarCode":"קוד אתר",
+            "Type": "סוג",
+            "Inspector": "Inspector",
+            "Login": "כניסה למערכת",
+            "ApproveReport": "אישור דיווח",
+            "Event":"אירוע",
+            "EnterSiteCode":"הזן קוד אתר"
         });
     });
 

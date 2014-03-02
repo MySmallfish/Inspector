@@ -58,16 +58,36 @@
                 }
             }
 
-            
+            function navigateToReports() {
+                $location.path("/TimeReports");
+            }
+
+            function navigateToManualReport() {
+                $location.path("/ManualReport");
+            }
+
+            function navigateToManagerReport() {
+                $location.path("/ManagerReport");
+            }
+
+            $scope.changeHeader({
+                header: "Inspector",
+                refresh: true,
+                logout: true
+            });
+
             _.extend($scope, {
                 scanEnter: scanEnter,
                 scanExit: scanExit,
                 managerReportEnabled: false,
+                navigateToManualReport: navigateToManualReport,
+                navigateToManagerReport: navigateToManagerReport,
+                navigateToReports: navigateToReports,
                 scanSupported: scanner.isScannerSupported()
             });
 
             loginManager.isUserLoggedIn().then(function (user) {
-                user = user || { managerReportEnabled: true };
+                user = /*user || */{ managerReportEnabled: true };
                 $scope.managerReportEnabled = user.managerReportEnabled;
             }, function () {
                 location.href = "#/Login";

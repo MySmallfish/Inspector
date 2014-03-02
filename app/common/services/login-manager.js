@@ -1,59 +1,90 @@
-(function(S, I) {
-    I.LoginManager = function(storageService, $q) {
-        var userLoggedIn = false;
+(function (S) {
+    S.LoginManager = [
+        "storageService", 
+        "$q", function (storageService, $q) {
 
-        function authenticate(userName, password){
+
+        function authenticate(userName, password) {
             var result = $q.defer();
-            var token = { token: "ABC123", expiredAt: new Date() };
-            if (userName  == "1"){
-                result.resolve(token);
+            if (userName == "1" && password == "1") {
+                result.resolve();
             } else {
                 result.reject();
             }
-            return result.promise;
-        }
-        
-        function sessionInfo(value){
-            return storageService.prefix("Inspector").session("SessionInfo", value);
-        }
-        function login(userName, token) {
-            var result = sessionInfo({ token: token, userName: userName }).then(function () {
-                 userLoggedIn = true;
+
+            return result.promise.then(function (auth) {
+                return auth;
             });
-           
-           return result;
         }
-        
-        function isValidToken(token){
-            var now = new Date();
-            return now < moment(token.expiredAt).add("d", 5);
+
+        function sessionInfo(value) {
+            return storageService.prefix("SimplyLog").session("User", value);
         }
-        function isUserLoggedIn(){
+
+        var currentUser;
+        function login(user) {
+            var result = sessionInfo(user).then(function () {
+                currentUser = user;
+            });
+
+            return result;
+        }
+
+        function isValidToken(user) {
+            return true;
+            var isValid = moment().unix() <= (parseInt(user.token.expires_on, 10) + 300);
+            return isValid;
+        }
+
+        function logout() {
+            currentUser = null;
+            return sessionInfo(null);
+        }
+
+        function isUserLoggedIn() {
             var result = $q.defer();
-            if (!userLoggedIn){
-                var userInfo = sessionInfo().then(function(info){
-                    if (info && info.token){
-                        
-                        if (isValidToken(info.token)){
-                            result.resolve();
-                        } else {
-                            result.reject();
-                        }
+            var userPromise;
+            if (currentUser) {
+                userPromise = $q.when(currentUser);
+            } else {
+                userPromise = sessionInfo();
+            }
+
+            userPromise.then(function (info) {
+                if (info) {
+                    if (isValidToken(info)) {
+                        currentUser = info;
+                        result.resolve(info);
                     } else {
                         result.reject();
                     }
-                });
-            } else {
-                result.resolve();
-            }
+                } else {
+                    result.reject();
+                }
+            });
+
             return result.promise;
         }
 
-        
+        function getCurrentUser() {
+            return sessionInfo().then(function (user) {
+                return user.user;
+            });
+        }
+
+        function getAccessToken() {
+            return isUserLoggedIn().then(function (info) {
+                return info.token.access_token;
+            }, logout);
+        }
+
         return {
+            getAccessToken: getAccessToken,
             isUserLoggedIn: isUserLoggedIn,
+            getCurrentUser: getCurrentUser,
             login: login,
+            logout: logout,
             authenticate: authenticate
         };
-    };
-})(Simple, Simple.Inspector);
+    }];
+})(Simple);

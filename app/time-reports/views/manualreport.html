@@ -1,9 +1,14 @@
 ﻿
-<numpad number="number" command="command"></numpad>
+<h3>{{"EnterSiteCode"|l10n}}</h3>
+<numpad number="number" command="command" max-length="{{maxSiteCodeLength}}"></numpad>
 
+<div class="row">
+    <div class="col-xs-1">&nbsp;</div>
+    <div class="col-xs-5">
+        <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!number" ng-click="enter()">{{"Enter"|l10n}}</button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!number" ng-click="exit()">{{"Exit"|l10n}}</button>
+    </div>
+</div>
 
-<ul class="layout buttons-menu horizontal split2">
-    <li ng-repeat="action in actions">
-        <button class="btn btn-block btn-lg btn-default" ng-class="{'btn-primary': action.isPrimary, 'btn-danger': action.isDanger, 'btn-success': action.isSuccess }" ng-click="run(action.command);">{{ action.text }}</button>
-    </li>
-</ul>

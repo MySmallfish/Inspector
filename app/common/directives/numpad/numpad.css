@@ -7,13 +7,15 @@
     border-radius: 100%;
     background-clip: padding-box;
     border: 1px solid #e5e5e5;
+    border: 1px solid #888;
     background: white;
     width: 60px;
     height: 60px;
     margin: 4px auto;
     color: #c0c0c0;
+    color: black;
     font-weight: bold;
-    font-size: 150%;
+    font-size: 180%;
     -webkit-transition: all 1s ease-out; /* Chrome 1-25, Safari 3.2+ */
     -moz-transition: all 1s ease-out; /* Firefox 4-15 */
     -o-transition: all 1s ease-out; /* Opera 10.50–12.00 */
@@ -31,7 +33,7 @@
         background: #2980B9;
         color: white;
         border: 1px solid #2472a4;
-        font-size: 200%;
+        font-size: 240%;
     }
 
 .numpad-host {

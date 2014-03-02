@@ -1,26 +1,26 @@
-<form novalidate name="theLoginForm"  ng-submit="login();" class="form-horizontal">
-    <div class="form-group">
-        <label for="Username" class="control-label">שם משתמש</label>
-        <div class="col-lg-10">
-            <input type="text" class="form-control" id="Username" name="Username" placeholder="שם משתמש" ng-model="Username" required maxlength="200">
+<form novalidate name="theLoginForm" ng-submit="login();">
+    <div class="row">
+        <div class="col-xs-2">&nbsp;</div>
+        <div class="col-xs-8">
+
+            <div class="form-group">
+                <label for="Username">שם משתמש</label>
+                <input type="text" class="form-control" id="Username" name="Username" placeholder="שם משתמש" ng-model="Username" required maxlength="200">
+            </div>
+            <div class="form-group">
+                <label for="Password" class="control-label">סיסמה</label>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="סיסמה" ng-model="Password" required maxlength="15">
+            </div>
+            <div class="form-group">
+                <div class="alert alert-warning" ng-show="loginError == 'AuthenticationFailed'">שם המשתמש או הסיסמה שגויים</div>
+                <div class="alert alert-error" ng-show="loginError == 'CommunicationError'">לא ניתן לצור קשר עם השרת</div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="Password" class="control-label">סיסמה</label>
-        <div class="col-lg-10">
-            <input type="password" class="form-control" id="Password" name="Password" placeholder="סיסמה" ng-model="Password"  required maxlength="15">
-        </div>
-    </div>
-     <div class="form-group">
-        <div class="col-lg-10">
-            <div class="alert alert-warning" ng-show="loginError == 'AuthenticationFailed'">שם המשתמש או הסיסמה שגויים</div>
-            <div class="alert alert-error" ng-show="loginError == 'CommunicationError'">לא ניתן לצור קשר עם השרת</div>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <div class="col-lg-10">
-            <button type="submit" ng-disabled="theLoginForm.$invalid" class="btn btn-default">כניסה</button>
+    <div class="row">
+        <div class="col-xs-6">&nbsp;</div>
+        <div class="col-xs-4">
+            <button type="submit" ng-disabled="theLoginForm.$invalid" class="btn btn-block btn-default btn-primary">כניסה</button>
         </div>
     </div>
 </form>

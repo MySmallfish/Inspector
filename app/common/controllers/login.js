@@ -1,6 +1,8 @@
 (function(S, I) {
     I.LoginController = function($scope, loginManager) {
 
+        $scope.changeHeader("Login");
+
         function navigate() {
             location.href = "#/";
         }

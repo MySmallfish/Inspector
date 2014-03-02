@@ -1,0 +1,25 @@
+﻿<div class="select-box hierarchical-select" ng-class="{ open: displayChildren }">
+    <div class="hd">
+        <div class="button hint" ng-disabled="!selectedItem" ng-click="navigateUp()">
+            <div class="color-hint" ng-if="useColorHint" ng-style="{'background-color': selectedItem.Color }"></div>
+            <i class="fa fa-level-up" ng-if="isHierarchical"></i>
+        </div>
+        <div class="text" ng-click="drop()">
+            {{selectedItem.Text}}
+        </div>
+        <div class="button select" ng-click="drop()">
+            <i class="fa" ng-class="{'fa-caret-down': !showSpinner && !displayChildren, 'fa-caret-up': !showSpinner && displayChildren, 'fa-spinner fa-spin': showSpinner}"></i>
+        </div>
+    </div>
+    <div class="bd" ng-if="items.length && displayChildren">
+        <ul ng-if="isHierarchical">
+            <li class="parent-item" ng-style="{ 'text-indent': 10 * $index}" ng-repeat="parent in parents" data-key="{{parent.Key}}">{{parent.Text}}</li>
+        </ul>
+        <ul>
+            <li class="item" ng-repeat="item in items" ng-click="select(item)" data-key="{{item.Key}}">
+                <div class="color-hint" ng-if="useColorHint" ng-style="{'background-color': item.Color }"></div>
+                {{item.Text}}
+            </li>
+        </ul>
+    </div>
+</div>

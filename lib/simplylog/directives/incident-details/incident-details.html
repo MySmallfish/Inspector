@@ -1,0 +1,37 @@
+﻿<div class="details">
+    <div class="details-header">
+        <div class="row">
+            <div class="col-xs-3">{{incident.Index}}</div>
+            <div class="col-xs-9">{{incident.StartTime|date:"dd/MM/yyyy HH:mm"}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <span class="severity" ng-style="{'background-color': incident.Severity.Color}"></span>
+        </div>
+        <div class="col-xs-7">{{incident.Severity.Name}}</div>
+        <div class="col-xs-4">
+            <div class="event-status" ng-show="incident">{{"EventStatus_" + incident.Status|l10n}}</div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-1"><i class="fa fa-tag"></i></div>
+        <div class="col-xs-11"><div>{{incident.Category.Name}}</div></div>
+        
+    </div>
+    <div class="row">
+        <div class="col-xs-1"><i class="fa fa-location-arrow"></i></div>
+        <div class="col-xs-11"><div>{{incident.Location.Name}}</div></div>
+    </div>
+    <div class="row" ng-if="incident.Equipment">
+        <div class="col-xs-1"><i class="fa fa-fire-extinguisher"></i></div>
+        <div class="col-xs-11"><div>{{incident.Equipment.Name}}</div></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"><i class="fa fa-pencil"></i></div>
+        <div class="col-xs-11">
+            <div class="descriptionContent">{{incident.Description}}</div>
+        </div>
+    </div>
+</div>

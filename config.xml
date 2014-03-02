@@ -10,7 +10,7 @@
   </description>
 
   <author href="http://wwww.ylm.co.il" email="y@ylm.co.il">
-    Inspector
+    YLM Solutions LTD.
   </author>
 
   <feature name="http://api.phonegap.com/1.0/device" />
@@ -21,12 +21,14 @@
   <feature name="http://api.phonegap.com/1.0/media"/>
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/notification"/>
-  
-  <preference name="phonegap-version" value="2.9.0" />
+
+  <preference name="phonegap-version" value="3.3.0" />
   <preference name="orientation"      value="portrait" />
-  <preference name="target-device"    value="universal" />
+  <preference name="target-device"    value="smartphone" />
   <preference name="fullscreen"       value="false" />
   <preference name="webviewbounce" value="false" />
+  <preference name="detect-data-types" value="false" />
+  <access origin="*" />
   <!--<icon src="img/ios/mobile.png" />
   --><!--<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
   <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
@@ -54,5 +56,12 @@
   --><!--
 
   <gap:splash src="img/ios/tablet.png"    gap:platform="ios"     width="320" height="480" />-->
+  <gap:plugin name="org.apache.cordova.file" />
+  <gap:plugin name="org.apache.cordova.file-transfer" />
+  <gap:plugin name="org.apache.cordova.camera" />
+  <gap:plugin name="org.apache.cordova.geolocation" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+
+  <gap:platform name="ios" />
+  <gap:platform name="android" />
 </widget>

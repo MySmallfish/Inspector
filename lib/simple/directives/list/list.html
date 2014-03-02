@@ -1,0 +1,17 @@
+﻿<div>
+    <div class="path" ng-click="navigateUp()">
+        <ul ng-if="isHierarchical">
+            <li><b>{{"Path"|l10n}}:</b></li>
+            <li ng-repeat="parent in parents">{{parent.Text}}</li>
+        </ul>
+    </div>
+    <div class="alert alert-info" ng-if="!showSpinner && !items.length">{{"NoItemsMessage"|l10n}}</div>
+    <div class="list-group">
+        <a ng-repeat="item in items"
+           ng-click="select(item, $event)" class="list-group-item"
+           ng-class="{'active': isSelected(item) }">
+            <div class="color-hint" ng-if="useColorHint" ng-style="{'background-color': item.Color }"></div>
+            {{item.Text}}
+        </a>
+    </div>
+</div>

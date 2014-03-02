@@ -1,0 +1,15 @@
+﻿.hierarchical-select .parent-item {
+    font-weight: bold;
+}
+
+.hierarchical-select .button.up {
+    right: 0;
+}
+
+.hierarchical-select .button.down {
+    left: 33px;
+}
+
+.hierarchical-select .button.select {
+    left: 0;
+}

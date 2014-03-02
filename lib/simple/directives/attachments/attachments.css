@@ -1,0 +1,68 @@
+﻿.attachments {
+    margin: 8px;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    text-align: center;
+
+}
+
+.rtl .attachments {
+    
+}
+
+.attachments .attachment {
+    display: block;
+    float: right;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.attachments .attachment {
+    width: 25%;
+    height: 92px;
+}
+
+
+
+.attachment {
+    position: relative;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.delete-confirm {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    color: red;
+    text-align: center;
+    font-size: 45px;
+    opacity: .7;
+    line-height: 92px;
+}
+
+.delete-in-progress .delete-confirm {
+    display: block;
+}
+
+.attachments .attachment img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*.add-attachment {
+    background-color: #BBB;
+    color: #444;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    text-align: center;
+}*/
+

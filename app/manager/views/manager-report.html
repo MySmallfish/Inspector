@@ -1,1 +1,30 @@
 <h3>{{"Event"|l10n}}</h3>
+
+<s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+
+<select class="form-control event-combobox" ng-model="selectedEvent">
+    <option value="">-- select even --</option>
+    <option ng-repeat="event in events">{{event.Name}}</option>
+</select>
+
+
+<div class="row">
+    <div class="col-xs-1">&nbsp;</div>
+    <div class="col-xs-5 enter-button">
+        <button type="button" class="btn btn-block btn-large btn-success" ng-click="managerScanEnter()" ng-disabled="!selectedEvent">
+            <i class="fa fa-check" ng-show="status=='enter'"></i>{{"Enter"|l10n}}
+        </button>
+    </div>
+    <div class="col-xs-5 exit-button">
+        <button type="button" class="btn btn-block btn-large btn-danger" ng-click="managerScanExit()" ng-disabled="!selectedEvent">
+            <i class="fa fa-check" ng-show="status=='exit'"></i>{{"Exit"|l10n}}
+        </button>
+    </div>
+</div>
+
+<div class="scan-employee" ng-show=" status">
+    <h3>{{"ReportHeader"|l10n}}</h3>
+    <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+</div>
+
+<div class="employee-details"></div>

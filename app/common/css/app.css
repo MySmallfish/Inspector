@@ -1,51 +1,56 @@
 .container {
     margin-top: 4em;
 }
+
 .btn {
     font-size: 14pt;
 }
+
 body.rtl {
     direction: rtl;
-    
 }
 
 .rtl .control-label {
     text-align: left;
 }
+
 .rtl dd {
     margin-right: 0;
 }
+
 .rtl thead th {
     text-align: right;
 }
-ul.layout{
-    list-style-type:none;
-    margin:0;
-    padding:0;
+
+ul.layout {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-.buttons-menu li{
-    margin:0;
-    padding:0;
+.buttons-menu li {
+    margin: 0;
+    padding: 0;
     margin-bottom: .7em;
 }
+
 .buttons-menu.horizontal {
     display: block;
     width: auto;
 }
-.buttons-menu.horizontal li {
-    display: inline-block;
-    margin-bottom: 0;
-    margin-left: 0.7em;
-    margin-right: 0.7em;
-}
 
-.buttons-menu.horizontal.split2 li{
-    width: 48%;
-    margin-left: 1%;
-    margin-right: 1%;
+    .buttons-menu.horizontal li {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-left: 0.7em;
+        margin-right: 0.7em;
+    }
 
-}
+    .buttons-menu.horizontal.split2 li {
+        width: 48%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
 
 .navbar-inverse .navbar-text {
     color: #FEFEFE;
@@ -63,3 +68,24 @@ ul.layout{
     margin-right: .5em;
 }
 
+.event-combobox {
+    margin: 10px 0 10px 0;
+    height: 48px;
+    border: solid 1px #BBB;
+}
+
+.enter-button .fa {
+    color: rgb(0, 87, 0);
+}
+
+.exit-button .fa {
+    color: rgb(173, 0, 0);
+}
+
+.enter-button .fa, .exit-button .fa {
+    font-size: 18pt;
+}
+
+.scan-employee{
+    margin: 10px 0 10px 0;
+}

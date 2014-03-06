@@ -99,3 +99,13 @@ ul.layout {
 .table thead tr th, .table tbody tr td, .event-date{
     text-align:center;
 }
+
+.version {
+    margin-top: 40px;
+    font-size: 8pt;
+    text-align: center;
+}
+.version span {
+    padding-left: 20px;
+    padding-right: 20px;
+}

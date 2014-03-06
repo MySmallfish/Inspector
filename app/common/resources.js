@@ -24,8 +24,8 @@
             "ApproveReport": "אישור דיווח",
             "Event":"אירוע",
             "EnterSiteCode": "הזן קוד אתר",
-            "SelectEvent":"בחר אירוע"
-
+            "SelectEvent":"בחר אירוע",
+            "EventTimeReports":"דיווחים לאירוע"
         });
     });
 

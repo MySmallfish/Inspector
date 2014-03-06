@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "il.co.ylm.inspector"
-        version   = "1.0.1">
+        version   = "1.0.2">
   <name>Inspector</name>
 
   <description>
@@ -29,33 +29,34 @@
   <preference name="webviewbounce" value="false" />
   <preference name="detect-data-types" value="false" />
   <access origin="*" />
-  <!--<icon src="img/ios/mobile.png" />
-  --><!--<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
-  <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
-  <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
-  <icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:density="xhdpi" />
-  <icon src="res/icon/blackberry/icon-80.png"     gap:platform="blackberry" />
-  <icon src="res/icon/blackberry/icon-80.png"     gap:platform="blackberry" gap:state="hover"/> 
-  <icon src="res/icon/webos/icon-64.png"          gap:platform="webos" />
-  <icon src="res/icon/windows-phone/icon-48.png"  gap:platform="winphone" />
-  <icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" />  
-  --><!--
-  <icon src="img/ios/mobile.png"            gap:platform="ios"        width="57" height="57" />
-  <icon src="img/ios/tablet.png"            gap:platform="ios"        width="72" height="72" />
-  <icon src="img/ios/mobile2x.png"         gap:platform="ios"        width="114" height="114" />
-  <icon src="img/ios/tabletx2.png"         gap:platform="ios"        width="144" height="144" />
+  <icon src="assets/app-icons/ios/Icon.png" />
+  <icon src="assets/app-icons/ios/Icon.png"            gap:platform="ios"        width="57" height="57" />
+  <icon src="assets/app-icons/ios/Icon-72.png"            gap:platform="ios"        width="72" height="72" />
+  <icon src="assets/app-icons/ios/Icon@2x.png"         gap:platform="ios"        width="114" height="114" />
+  <icon src="assets/app-icons/ios/Icon-72@2x.png"         gap:platform="ios"        width="144" height="144" />
+
+  <icon src="assets/app-icons/android/drawable-ldpi/ic_launcher.png"   gap:platform="android"    gap:density="ldpi" />
+  <icon src="assets/app-icons/android/drawable-mdpi/ic_launcher.png"   gap:platform="android"    gap:density="mdpi" />
+  <icon src="assets/app-icons/android/drawable-hdpi/ic_launcher.png"   gap:platform="android"    gap:density="hdpi" />
+  <icon src="assets/app-icons/android/drawable-xdpi/ic_launcher.png"   gap:platform="android"    gap:density="xdpi" />
+  <icon src="assets/app-icons/android/drawable-xxdpi/ic_launcher.png"   gap:platform="android"    gap:density="xxdpi" />
 
 
-  --><!--
-  <gap:splash src="res/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="ldpi" />
-  <gap:splash src="res/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="mdpi" />
-  <gap:splash src="res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
-  <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-  <gap:splash src="res/screen/blackberry/screen-225.png"         gap:platform="blackberry" />
-  <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
-  --><!--
+  <gap:splash src="assets/splash/android/images/res-notlong-port-xhdpi/default.png"  gap:platform="android" />
 
-  <gap:splash src="img/ios/tablet.png"    gap:platform="ios"     width="320" height="480" />-->
+  <gap:splash src="assets/splash/iphone/Default.png" gap:platform="ios" width="320" height="480" />
+  <gap:splash src="assets/splash/iphone/Default@2x.png" gap:platform="ios" width="640" height="960" />
+  <gap:splash src="assets/splash/iphone/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+
+  <gap:splash src="assets/splash/iphone/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
+  <gap:splash src="assets/splash/iphone/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+  <gap:splash src="assets/splash/iphone/Default-Landscape.png" gap:platform="ios" width="2048" height="1536" />
+  <gap:splash src="assets/splash/iphone/Default-Portrait.png" gap:platform="ios" width="1536" height="2048" />
+
+  <!-- retina iPad support: PhoneGap 2.5.0+ only -->
+  <gap:splash src="splash/ios/ipad-retina-landscape.png" gap:platform="ios" width="2048" height="1496" />
+  <gap:splash src="splash/ios/ipad-retina-portrait.png" gap:platform="ios" width="1536" height="2008" />
+
   <gap:plugin name="org.apache.cordova.file" />
   <gap:plugin name="org.apache.cordova.file-transfer" />
   <gap:plugin name="org.apache.cordova.camera" />

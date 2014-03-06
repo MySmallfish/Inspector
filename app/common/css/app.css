@@ -68,8 +68,7 @@ ul.layout {
     margin-right: .5em;
 }
 
-.event-combobox {
-    margin: 10px 0 10px 0;
+ .event-combobox{
     height: 48px;
     border: solid 1px #BBB;
 }
@@ -86,6 +85,6 @@ ul.layout {
     font-size: 18pt;
 }
 
-.scan-employee{
+.scan-employee,.employee-details, .event-combobox{
     margin: 10px 0 10px 0;
 }

@@ -23,7 +23,9 @@
             "Login": "כניסה למערכת",
             "ApproveReport": "אישור דיווח",
             "Event":"אירוע",
-            "EnterSiteCode":"הזן קוד אתר"
+            "EnterSiteCode": "הזן קוד אתר",
+            "SelectEvent":"בחר אירוע"
+
         });
     });
 

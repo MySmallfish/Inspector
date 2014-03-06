@@ -68,23 +68,34 @@ ul.layout {
     margin-right: .5em;
 }
 
- .event-combobox{
+.event-combobox {
     height: 48px;
     border: solid 1px #BBB;
 }
 
-.enter-button .fa {
-    color: rgb(0, 87, 0);
-}
-
-.exit-button .fa {
-    color: rgb(173, 0, 0);
+.enter-button .fa, .exit-button .fa {
+    color: white;
+    margin-left: 10px;
 }
 
 .enter-button .fa, .exit-button .fa {
     font-size: 18pt;
 }
 
-.scan-employee,.employee-details, .event-combobox{
+.scan-employee, .employee-details, .event-combobox {
     margin: 10px 0 10px 0;
+}
+
+.employee-image, .employee-name {
+    border: solid 1px #ccc;
+}
+
+.employee-name {
+    text-align: center;
+    font-size: 15pt;
+    margin-bottom: 10px;
+}
+
+.table thead tr th, .table tbody tr td, .event-date{
+    text-align:center;
 }

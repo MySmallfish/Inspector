@@ -11,6 +11,8 @@
 	app.controller("TimeReportsCtrl", I.TimeReportsController);
 	app.controller("ManualReportCtrl", I.ManualReportController);
 	app.controller("ManagerReportCtrl", I.ManagerReportController);
+	app.controller("EventTimeReportsCtrl", I.EventTimeReportsController);
+	
     
 	app.directive("appHeader", I.AppHeaderDirective);
 	app.directive("numpad", S.Numpad);

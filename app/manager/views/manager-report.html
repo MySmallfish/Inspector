@@ -1,9 +1,9 @@
 <h3>{{"Event"|l10n}}</h3>
 
-<s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+<s-scan-barcode id="simulated-report" barcode="eventBarCode" ng-hide="true"></s-scan-barcode>
 
 <select class="form-control event-combobox" ng-model="selectedEvent">
-    <option value="">-- select even --</option>
+    <option value="">{{"SelectEvent"|l10n}}</option>
     <option ng-repeat="event in events">{{event.Name}}</option>
 </select>
 
@@ -22,22 +22,25 @@
     </div>
 </div>
 
-<div class="scan-employee" ng-show=" status">
+<div class="scan-employee" ng-disabled="status">
     <h3>{{"ReportHeader"|l10n}}</h3>
-    <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+    <s-scan-barcode id="simulated-report" barcode="reportBarCode"></s-scan-barcode>
 </div>
 
-<div class="employee-details">
+<div class="employee-details" ng-show="reportBarCode && status">
 
+    <div class="employee-image"><img src="{{employee.ImagUrl}}" /></div>
+    <div class="employee-name">{{employee.Name}}</div>
 
-    <div class="row">
-        <div class="col-xs-1">&nbsp;</div>
-        <div class="col-xs-5 enter-button">
-            <button type="button" class="btn btn-block btn-large" ng-click="">{{"TimeReports"|l10n}}</button>
-        </div>
-        <div class="col-xs-5 exit-button">
-            <button type="button" class="btn btn-block btn-large btn-success" ng-click="">{{"Approve"|l10n}}</button>
-        </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-1">&nbsp;</div>
+    <div class="col-xs-5 enter-button">
+        <button type="button" class="btn btn-block btn-large" ng-click="navigateToEventReports()">{{"TimeReports"|l10n}}</button>
     </div>
-
+    <div class="col-xs-5 exit-button">
+        <button type="button" class="btn btn-block btn-large btn-success" ng-click="clearEmployee()" ng-disabled="!(reportBarCode && status)">{{"Approve"|l10n}}</button>
+    </div>
 </div>
+

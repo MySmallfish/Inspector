@@ -9,10 +9,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="report in reports|orderBy:Date:true track by $index">
-            <td>{{reportStatus}}</td>
-            <td></td>
-            <td></td>
+        <tr ng-repeat="report in timeReports|orderBy:Date:true track by $index">
+            <td>{{report.employeeName}}</td>
+            <td>{{report.enterTime}}</td>
+            <td>{{report.exitTime}}</td>
         </tr>
     </tbody>
 </table>

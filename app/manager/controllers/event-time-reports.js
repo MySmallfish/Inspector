@@ -1,5 +1,5 @@
 ﻿(function (S, I) {
-    I.EventTimeReportsController = ["$scope", "eventReportManager", "employeeService", function ($scope, eventReportManager, employeeService) {
+    I.EventTimeReportsController = ["$q", "$scope", "eventReportManager", "employeeService", function ($q, $scope, eventReportManager, employeeService) {
 
         $scope.changeHeader({
             header: "EventTimeReports",
@@ -10,9 +10,17 @@
             $scope.event = item;
         });
 
-        $scope.$on("report-status-selected", function (item) {
-            console.log("here???", item);
+        $scope.timeReports = [];
+
+        eventReportManager.getReports().then(function (items) {
+            if (items) {
+                $scope.timeReports = items;
+            }
         });
+
+        //$scope.$on("report-status-selected", function (item) {
+        //    console.log("here???", item);
+        //});
         //$scope.reportStatus = managerReport.reportStatus;
   
     }];

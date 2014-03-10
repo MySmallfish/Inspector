@@ -22,12 +22,9 @@
 </div>
 
 <div class="scan-employee" ng-disabled="reportStatus">
-    <div class="row">
-        <h3 class="col-xs-3 report-header">{{"ReportHeader"|l10n}}</h3>
-        <div class="col-xs-9">
-            <s-scan-barcode id="simulated-report" barcode="reportBarCode"></s-scan-barcode>
-        </div>
-    </div>
+    <h4 class="report-header">{{"ReportHeader"|l10n}}</h4>
+    <s-scan-barcode id="simulated-report" barcode="reportBarCode"></s-scan-barcode>
+
 </div>
 
 <div class="employee-details" ng-show="reportBarCode && reportStatus">

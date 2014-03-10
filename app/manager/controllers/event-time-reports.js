@@ -10,8 +10,10 @@
             $scope.event = item;
         });
 
-        
-
-        
+        $scope.$on("report-status-selected", function (item) {
+            console.log("here???", item);
+        });
+        //$scope.reportStatus = managerReport.reportStatus;
+  
     }];
 })(Simple, Simple.Inspector);

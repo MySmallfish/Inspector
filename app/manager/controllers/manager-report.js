@@ -7,12 +7,14 @@
         });
 
         $scope.managerScanEnter = function () {
-            $scope.status = "enter";
+            $scope.$root.reportStatus = "enter";
+            $scope.$root.$broadcast("report-status-selected");
             console.log("scanEnter");
         };
         
         $scope.managerScanExit = function () {
-            $scope.status = "exit";
+            $scope.$root.reportStatus = "exit";
+            $scope.$root.$broadcast("report-status-selected");
             console.log("scanExit");
         };
 
@@ -21,6 +23,7 @@
         });
 
         $scope.$watch("reportBarCode", function (employeeCode) {
+            console.log("barcode", employeeCode);
             employeeService.getEmployeeByCode(employeeCode).then(function (item) {
                 $scope.employee = item;
             })

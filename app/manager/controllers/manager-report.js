@@ -1,5 +1,5 @@
 (function (S, I) {
-    I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", function ($scope, $location, eventReportManager, employeeService) {
+    I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", function ($scope, $location, eventReportManager, employeeService, timeReportManager) {
 
         var userid = 3359;
 
@@ -8,14 +8,16 @@
             back: true
         });
 
+        $scope.isEnter = true;
+
         $scope.managerScanEnter = function () {
-            $scope.$root.reportStatus = "enter";
+            $scope.isEnter = true;
             $scope.$root.$broadcast("report-status-selected");
             console.log("scanEnter");
         };
-        
+
         $scope.managerScanExit = function () {
-            $scope.$root.reportStatus = "exit";
+            $scope.isEnter = false;
             $scope.$root.$broadcast("report-status-selected");
             console.log("scanExit");
         };
@@ -34,8 +36,28 @@
             $scope.reportBarCode = null;
         };
 
-        $scope.navigateToEventReports = function(){
-            $location.path("/EventTimeReports");
+        $scope.navigateToEventReports = function () {
+            $location.path("/EventTimeReports/" + $scope.selectedEventId);
         }
+
+        function buildReport() {
+            var report = {
+                employeeId: $scope.employee.Id,
+                isEnter: $scope.isEnter,
+                employeeCode: $scope.reportBarCode,
+                eventId: $scope.selectedEventId
+            };
+            return report;
+        };
+
+        $scope.report = function () {
+            var newReport = buildReport();
+            console.log("HERE??", newReport);
+
+            timeReportManager.addTimeReport(newReport);
+            
+
+            $scope.navigateToEventReports();
+        };
     }];
 })(Simple, Simple.Inspector);

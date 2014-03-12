@@ -1,46 +1,46 @@
 
 <s-scan-barcode id="simulated-report" barcode="eventBarCode" ng-hide="true"></s-scan-barcode>
 
-<select class="form-control event-combobox" ng-model="selectedEvent">
+<select class="form-control event-combobox" ng-model="selectedEventId">
     <option value="">{{"SelectEvent"|l10n}}</option>
-    <option ng-repeat="event in events">{{event.name}}</option>
+    <option ng-repeat="event in events" value="{{event.id}}">{{event.name}}</option>
 </select>
 
 
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5 enter-button">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-click="managerScanEnter()" ng-disabled="!selectedEvent">
-            <i class="fa fa-check" ng-show="reportStatus=='enter'"></i>{{"Enter"|l10n}}
+        <button type="button" class="btn btn-block btn-large btn-success" ng-click="managerScanEnter()" ng-disabled="!selectedEventId">
+            <i class="fa fa-check" ng-show="isEnter"></i>{{"Enter"|l10n}}
         </button>
     </div>
     <div class="col-xs-5 exit-button">
-        <button type="button" class="btn btn-block btn-large btn-danger" ng-click="managerScanExit()" ng-disabled="!selectedEvent">
-            <i class="fa fa-check" ng-show="reportStatus=='exit'"></i>{{"Exit"|l10n}}
+        <button type="button" class="btn btn-block btn-large btn-danger" ng-click="managerScanExit()" ng-disabled="!selectedEventId">
+            <i class="fa fa-check" ng-hide="isEnter"></i>{{"Exit"|l10n}}
         </button>
     </div>
 </div>
 
-<div class="scan-employee" ng-disabled="reportStatus">
+<div class="scan-employee">
     <h4 class="report-header">{{"ReportHeader"|l10n}}</h4>
     <s-scan-barcode id="simulated-report" barcode="reportBarCode"></s-scan-barcode>
 
 </div>
 
-<div class="employee-details" ng-show="reportBarCode && reportStatus">
+<div class="employee-details">
 
     <div class="employee-image"><img src="{{employee.ImagUrl}}" /></div>
-    <div class="employee-name">{{employee.Name}}</div>
+    <div class="employee-name">{{employee.Name}}<div ng-hide="reportBarCode">{{"WaitingForScan"|l10n}}...</div></div>
 
 </div>
 
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()">{{"TimeReports"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-default" ng-click="report()">{{"TimeReports"|l10n}}</button>
     </div>
     <div class="col-xs-5 approve-button">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-click="clearEmployee()" ng-disabled="!(reportBarCode && reportStatus)">{{"Approve"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-success" ng-click="clearEmployee()" ng-disabled="!(reportBarCode)">{{"Approve"|l10n}}</button>
     </div>
 </div>
 

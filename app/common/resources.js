@@ -25,7 +25,8 @@
             "Event":"אירוע",
             "EnterSiteCode": "הזן קוד אתר",
             "SelectEvent":"בחר אירוע",
-            "EventTimeReports":"דיווחים לאירוע"
+            "EventTimeReports": "דיווחים לאירוע",
+            "WaitingForScan":"ממתין לסריקה"
         });
     });
 

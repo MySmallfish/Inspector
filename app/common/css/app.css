@@ -85,25 +85,31 @@ ul.layout {
 .scan-employee, .employee-details, .event-combobox {
     margin: 10px 0 10px 0;
 }
-.report-header{
+
+.report-header {
     margin-top: 10px;
 }
 
-.employee-image, .employee-name {
-    border: solid 1px #ccc;
-    width: 65%;
-    margin: auto;
+.employee-image, .employee-name{
+     border: solid 1px #ccc;
 }
-
-    .employee-image img {
-        width: 90%;
-    }
 
 .employee-name {
     text-align: center;
     font-size: 15pt;
     margin-bottom: 10px;
 }
+
+.employee-image{
+    height: 152px;
+    width: auto;
+    margin: auto;
+}
+
+    .employee-image img {
+        max-height: 150px;
+        width: auto;
+    }
 
 .table thead tr th, .table tbody tr td, .event-date {
     text-align: center;

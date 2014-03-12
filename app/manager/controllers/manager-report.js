@@ -1,6 +1,8 @@
 (function (S, I) {
     I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", function ($scope, $location, eventReportManager, employeeService) {
 
+        var userid = 3359;
+
         $scope.changeHeader({
             header: "ManagerReport",
             back: true
@@ -18,12 +20,11 @@
             console.log("scanExit");
         };
 
-        eventReportManager.getEvents().then(function (items) {
+        eventReportManager.getEvents(userid).then(function (items) {
             $scope.events = items;
         });
 
         $scope.$watch("reportBarCode", function (employeeCode) {
-            console.log("barcode", employeeCode);
             employeeService.getEmployeeByCode(employeeCode).then(function (item) {
                 $scope.employee = item;
             })

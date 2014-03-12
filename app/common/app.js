@@ -2,8 +2,10 @@
     var app = angular.module("Simple.Inspector.InspectorApp", ["ngRoute", "ngTouch", "Simple", "Simple.Inspector"]);
 
 	app.service("loginManager", S.LoginManager);
-	
-	
+	app.service("configuration", S.Configuration);
+	app.service("inspectorApi", S.InspectorApi);
+
+
 	app.controller("AppCtrl", I.AppController);
 	app.controller("LoginCtrl", I.LoginController);
 	app.controller("HomeCtrl", I.HomeController);

@@ -11,14 +11,14 @@
         $scope.isEnter = true;
 
         $scope.managerScanEnter = function () {
-            $scope.reportBarCode = null;
+            //$scope.reportBarCode = null;
             console.log("$scope", $scope);
             $scope.isEnter = true;
             $scope.$root.$broadcast("report-status-selected");
         };
 
         $scope.managerScanExit = function () {
-            $scope.reportBarCode = null;
+           // $scope.reportBarCode = null;
             console.log("$scope", $scope);
             $scope.isEnter = false;
             $scope.$root.$broadcast("report-status-selected");

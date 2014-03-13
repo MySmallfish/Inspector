@@ -11,11 +11,15 @@
         $scope.isEnter = true;
 
         $scope.managerScanEnter = function () {
+            $scope.reportBarCode = null;
+            console.log("$scope", $scope);
             $scope.isEnter = true;
             $scope.$root.$broadcast("report-status-selected");
         };
 
         $scope.managerScanExit = function () {
+            $scope.reportBarCode = null;
+            console.log("$scope", $scope);
             $scope.isEnter = false;
             $scope.$root.$broadcast("report-status-selected");
         };
@@ -25,12 +29,15 @@
         });
 
         $scope.$watch("reportBarCode", function (employeeCode) {
-            employeeService.getEmployeeByCode(employeeCode).then(function (item) {
-                $scope.employee = item;
+            employeeService.getIdByCode(userid, employeeCode).then(function (item) {
+                if (employeeCode) {
+                    $scope.employee = item;
+                }
             })
         });
 
         $scope.clearEmployee = function () {
+            $scope.employee = null;
             $scope.reportBarCode = null;
         };
 

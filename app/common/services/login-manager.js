@@ -2,20 +2,12 @@
     S.LoginManager = ["storageService", "$q", "inspectorApi", function (storageService, $q, inspectorApi) {
 
 
-            function authenticate(userName, password) {
-                //inspectorApi.signIn(userName, password).then(function (item) {
-                //    console.log("authenticate", item);
-                //});
-
-                if (userName == "1" && password == "1") {
-                    result.resolve();
-                } else {
-                    result.reject();
-                }
-
-                return result.promise.then(function (auth) {
-                    return auth;
+        function authenticate(userName, password) {
+                return inspectorApi.signIn(userName, password).then(function (item) {
+                    console.log("authenticate", item);
+                    return item;
                 });
+
             }
 
             function sessionInfo(value) {

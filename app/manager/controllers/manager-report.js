@@ -13,13 +13,11 @@
         $scope.managerScanEnter = function () {
             $scope.isEnter = true;
             $scope.$root.$broadcast("report-status-selected");
-            console.log("scanEnter");
         };
 
         $scope.managerScanExit = function () {
             $scope.isEnter = false;
             $scope.$root.$broadcast("report-status-selected");
-            console.log("scanExit");
         };
 
         eventReportManager.getEvents(userid).then(function (items) {
@@ -52,12 +50,8 @@
 
         $scope.report = function () {
             var newReport = buildReport();
-            console.log("HERE??", newReport);
-
             timeReportManager.addTimeReport(newReport);
-            
-
-            $scope.navigateToEventReports();
+            $scope.clearEmployee();
         };
     }];
 })(Simple, Simple.Inspector);

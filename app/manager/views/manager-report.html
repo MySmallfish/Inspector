@@ -30,17 +30,17 @@
 <div class="employee-details">
 
     <div class="employee-image"><img src="{{employee.ImagUrl}}" /></div>
-    <div class="employee-name">{{employee.Name}}<div ng-hide="reportBarCode">{{"WaitingForScan"|l10n}}...</div></div>
+    <div class="employee-name">{{employee.Name}}<div ng-hide="employee.Name">{{"WaitingForScan"|l10n}}...</div></div>
 
 </div>
 
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-default" ng-click="report()">{{"TimeReports"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()">{{"TimeReports"|l10n}}</button>
     </div>
     <div class="col-xs-5 approve-button">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-click="clearEmployee()" ng-disabled="!(reportBarCode)">{{"Approve"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-success" ng-click="report()" ng-disabled="!(reportBarCode)">{{"Approve"|l10n}}</button>
     </div>
 </div>
 

@@ -23,7 +23,7 @@
 
 <div class="scan-employee">
     <h4 class="report-header">{{"ReportHeader"|l10n}}</h4>
-    <s-scan-barcode id="simulated-report" barcode="reportBarCode"></s-scan-barcode>
+    <s-scan-barcode id="simulated-report" barcode="reportBarCode" disabled="!selectedEventId"></s-scan-barcode>
 
 </div>
 
@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()">{{"TimeReports"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()" ng-disabled="!selectedEventId">{{"TimeReports"|l10n}}</button>
     </div>
     <div class="col-xs-5 approve-button">
         <button type="button" class="btn btn-block btn-large btn-success" ng-click="report()" ng-disabled="!(reportBarCode)">{{"Approve"|l10n}}</button>

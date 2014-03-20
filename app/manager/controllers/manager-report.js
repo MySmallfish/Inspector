@@ -1,7 +1,12 @@
 (function (S, I) {
-    I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", function ($scope, $location, eventReportManager, employeeService, timeReportManager) {
+    I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", "loginManager",
+        function ($scope, $location, eventReportManager, employeeService, timeReportManager, loginManager) {
 
         var userid = 3359;
+
+        loginManager.getCurrentUser().then(function (item) {
+            console.log("login??", item);
+        });
 
         $scope.changeHeader({
             header: "ManagerReport",

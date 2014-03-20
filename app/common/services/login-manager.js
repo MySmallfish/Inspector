@@ -61,6 +61,7 @@
 
             function getCurrentUser() {
                 return sessionInfo().then(function (user) {
+                    console.log("getCurrentUser", user.user);
                     return user.user;
                 });
             }

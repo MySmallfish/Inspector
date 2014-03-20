@@ -4,7 +4,7 @@
 
         function authenticate(userName, password) {
                 return inspectorApi.signIn(userName, password).then(function (item) {
-                    console.log("authenticate", item);
+                    
                     return item;
                 });
 

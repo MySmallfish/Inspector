@@ -14,8 +14,11 @@
         $scope.login = function() {
             var authResult = loginManager.authenticate($scope.Username, $scope.Password);
 
-            function loginUser(token) {
-                loginManager.login($scope.Username, token).then(navigate);
+            function loginUser(userInfo) {
+                loginManager.login({
+                    user: userInfo,
+                    loggedInAt: moment().format("YYYY-MM-DD HH:mm")
+                }).then(navigate);
             }
 
             function authenticationFailed() {

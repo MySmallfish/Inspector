@@ -5,7 +5,8 @@
         if (uniqueId) {
             $scope.changeHeader("ApproveReport");
         } 
-        timeReportManager.get(uniqueId).then(function(timeReport) {
+        timeReportManager.get(uniqueId).then(function (timeReport) {
+            
             $scope.timeReport = timeReport;
         });
         

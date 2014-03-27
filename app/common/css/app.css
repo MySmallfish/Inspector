@@ -90,8 +90,8 @@ ul.layout {
     margin-top: 10px;
 }
 
-.employee-image, .employee-name{
-     border: solid 1px #ccc;
+.employee-image, .employee-name {
+    border: solid 1px #ccc;
 }
 
 .employee-name {
@@ -100,7 +100,7 @@ ul.layout {
     margin-bottom: 10px;
 }
 
-.employee-image{
+.employee-image {
     height: 152px;
     width: auto;
     margin: auto;
@@ -125,3 +125,27 @@ ul.layout {
         padding-left: 20px;
         padding-right: 20px;
     }
+
+.loading-icon {
+    background-color: #333;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    background-image: url(../img/loading.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    top: 30%;
+    right: 25%;
+    z-index: 200;
+    color: white;
+}
+
+.loading-icon h3 {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

@@ -23,9 +23,11 @@
                 
                 $scope.barCode = barCode;
                 if (barCode && barCode.length > 0) {
-                    timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function(e) {
-                        onTimeReportError(e, null);
-                    });
+                    $scope.notifyProgressStarted().then(function() {
+                        return timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function (e) {
+                            onTimeReportError(e, null);
+                        });
+                    }).finally($scope.notifyProgressCompleted);
                 }
             }
 

@@ -27,6 +27,10 @@
 </head>
 <body class="rtl" ng-controller="AppCtrl">
     <app-header></app-header>
+    <div class="loading-icon" ng-show="isInProgress">
+        <h3 ng-bind='("Loading"|l10n) + "..."'> </h3>
+    </div>
+
     <div data-ng-view class="container">
     </div>
 

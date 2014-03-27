@@ -3,6 +3,7 @@
     var simplyLogModule = angular.module("Simple.Inspector.InspectorApp");
     simplyLogModule.run(function (textResource) {
         textResource.load("he-IL", {
+            "Loading": "בטעינה",
             "ManualReport": "דיווח ידני",
             "Enter": "כניסה",
             "Exit": "יציאה",

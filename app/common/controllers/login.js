@@ -5,6 +5,7 @@
 
         function navigate() {
             location.href = "#/";
+            
         }
 
         loginManager.isUserLoggedIn().then(function() {

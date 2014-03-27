@@ -29,6 +29,7 @@
                 return isValid;
             }
 
+        // alertService.show({ title: response.Title, message: response.Text, templateUrl: "app/common/views/alert.html" });
             function logout() {
                 currentUser = null;
                 return sessionInfo(null);

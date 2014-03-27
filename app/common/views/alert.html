@@ -1,0 +1,11 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+    <h4 class="modal-title">{{ title || "Message" | l10n}}</h4>
+</div>
+<div class="modal-body">
+    <p>{{ message || "ErrorMessage" | l10n}}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-class="{ 'btn': true, 'btn-primary': cancelText, 'btn-default': !cancelText }" ng-click="cancelText ? confirm() : close()">{{ confirmText }}</button>
+    <button type="button" class="btn btn-default" ng-show="cancelText" ng-click="close()">{{ cancelText }}</button>
+</div>

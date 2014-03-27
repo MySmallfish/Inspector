@@ -88,6 +88,20 @@
                 scanSupported: scanner.isScannerSupported()
             });
 
+            $scope.isManagerPermissions = true;
+            $scope.isReportPermissions = true;
+
+            loginManager.getCurrentUser().then(function (item) {
+                if (typeof item.EmployeeId !== "number" || item.EmployeeId <= 0 || !AllowAppLogin) {
+                    $scope.isManagerPermissions = true;
+                    $scope.isReportPermissions = false;
+                } else {
+                    $scope.isManagerPermissions = false;
+                    $scope.isReportPermissions = true;
+                }
+            });
+            
+
             loginManager.isUserLoggedIn().then(function (user) {
                 user = /*user || */{ managerReportEnabled: true };
                 $scope.managerReportEnabled = user.managerReportEnabled;

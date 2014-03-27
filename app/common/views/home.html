@@ -1,29 +1,32 @@
-﻿<h3>{{"ReportHeader"|l10n}}</h3>
-<div class="row">
-    <div class="col-xs-1">&nbsp;</div>
-    <div class="col-xs-10">
-        <div ng-show="!scanSupported">
-            <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
-            <br />
+﻿<div ng-show="isReportPermissions">
+    <h3>{{"ReportHeader"|l10n}}</h3>
+    <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-10">
+            <div ng-show="!scanSupported">
+                <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-5">
+            <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!scanSupported && !barCode" ng-click="scanEnter()">{{"Enter"|l10n}}</button>
+        </div>
+        <div class="col-xs-5">
+            <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!scanSupported && !barCode" ng-click="scanExit()">{{"Exit"|l10n}}</button>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-1">&nbsp;</div>
-    <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!scanSupported && !barCode" ng-click="scanEnter()">{{"Enter"|l10n}}</button>
-    </div>
-    <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!scanSupported && !barCode" ng-click="scanExit()">{{"Exit"|l10n}}</button>
-    </div>
-</div>
 <h3>{{"ActionsHeader"|l10n}}</h3>
 <div class="row">
     <div class="col-xs-2">&nbsp;</div>
     <div class="col-xs-8">
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()">{{"ManualReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-show="isReportPermissions">{{"ManualReport"|l10n}}</button>
         <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-show="managerReportEnabled">{{"ManagerReport"|l10n}}</button>
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" >{{"TimeReports"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-show="isReportPermissions">{{"TimeReports"|l10n}}</button>
     </div>
 </div>

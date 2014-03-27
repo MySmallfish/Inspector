@@ -8,7 +8,17 @@
 
 
             function onTimeReportError(error, info) {
-                console.error(error, info);
+                var errors = ["EmployeeMissing", "SiteMissing", "LocationNotFound"];
+
+                var reportError = errors.indexOf(error);
+
+                if (reportError) {
+                    $scope.reportError = error.error;
+                } else {
+                    $scope.reportError = "UnexpectedError";
+                }
+
+                console.log("error", error, $scope.reportError, reportError);
             }
 
             function onTimeReported(info) {
@@ -92,9 +102,9 @@
             $scope.isReportPermissions = true;
 
             loginManager.getCurrentUser().then(function (item) {
-                if (typeof item.EmployeeId !== "number" || item.EmployeeId <= 0 || !AllowAppLogin) {
+                if (typeof item.EmployeeId !== "number" || item.EmployeeId <= 0 || !item.AllowAppLogin) {
                     $scope.isManagerPermissions = true;
-                    //$scope.isReportPermissions = false;
+                    $scope.isReportPermissions = false;
                 } else {
                     $scope.isManagerPermissions = false;
                     $scope.isReportPermissions = true;

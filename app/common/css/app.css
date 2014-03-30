@@ -140,6 +140,7 @@ ul.layout {
     right: 25%;
     z-index: 200;
     color: white;
+    opacity: .8;
 }
 
 .loading-icon h3 {
@@ -148,4 +149,17 @@ ul.layout {
     left: 0;
     right: 0;
     text-align: center;
+}
+
+.loading {
+    position: absolute;
+    background-image: url(../img/loading.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1010;
+    opacity: .8;
 }

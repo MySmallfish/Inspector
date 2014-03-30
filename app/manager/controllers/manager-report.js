@@ -2,7 +2,6 @@
     I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", "loginManager","$timeout",
         function ($scope, $location, eventReportManager, employeeService, timeReportManager, loginManager, $timeout) {
             
-            console.log("S", $scope.$root.lastSelectedEventId);
             function loadEvents(userid) {
                 eventReportManager.getEvents(userid).then(function (items) {
                     $scope.events = items;
@@ -12,66 +11,78 @@
                 });
             }
 
-            $scope.$watch("selectedEventId", function (value) {
-                $scope.$root.lastSelectedEventId = value;
-            });
-
-            loginManager.getCurrentUser().then(function (item) {
-                $scope.userid = item.UserId;
-                return item.UserId;
-            }).then(loadEvents);
-
-            $scope.changeHeader({
-                header: "ManagerReport",
-                back: true
-            });
-
-            $scope.isEnter = true;
-
-            $scope.managerScanEnter = function () {
-
-                console.log("$scope", $scope);
+            function managerScanEnter() {
                 $scope.isEnter = true;
                 $scope.$root.$broadcast("report-status-selected");
             };
 
-            $scope.managerScanExit = function () {
+            function managerScanExit() {
                 $scope.isEnter = false;
                 $scope.$root.$broadcast("report-status-selected");
             };
 
-            $scope.$watch("reportBarCode", function (employeeCode) {
-                employeeService.getIdByCode($scope.userid, employeeCode).then(function (item) {
-                    if (employeeCode) {
-                        $scope.employee = item;
-                    }
-                })
-            });
-
-            $scope.clearEmployee = function () {
+            function clearEmployee() {
                 $scope.employee = null;
                 $scope.reportBarCode = null;
             };
 
-            $scope.navigateToEventReports = function () {
+            function navigateToEventReports() {
                 $location.path("/EventTimeReports/" + $scope.selectedEventId);
-            }
+            };
 
             function buildReport() {
-                var report = {
+                var employeeReport = {
                     employeeId: $scope.employee.Id,
                     isEnter: $scope.isEnter,
                     employeeCode: $scope.reportBarCode,
                     eventId: $scope.selectedEventId
                 };
-                return report;
+                return employeeReport;
             };
 
-            $scope.report = function () {
+            function report() {
                 var newReport = buildReport();
                 timeReportManager.addTimeReport(newReport);
                 $scope.clearEmployee();
             };
+
+            _.extend($scope, {
+                managerScanEnter: managerScanEnter,
+                managerScanExit: managerScanExit,
+                clearEmployee: clearEmployee,
+                navigateToEventReports: navigateToEventReports,
+                report: report
+            });
+            
+            $scope.changeHeader({
+                header: "ManagerReport",
+                back: true
+            });
+
+            $scope.$watch("selectedEventId", function (value) {
+                $scope.$root.lastSelectedEventId = value;
+            });
+
+            $scope.$watch("reportBarCode", function (employeeCode) {
+                employeeService.getEmployeeByCode($scope.userid, employeeCode).then(function (item) {
+                    if (employeeCode) {
+                        $scope.employee = item;
+                    }
+                });
+            });
+
+            $scope.isEnter = true;
+
+            function loadUser() {
+                loginManager.getCurrentUser().then(function(item) {
+                    $scope.userid = item.UserId;
+                    return item.UserId;
+                }).then(loadEvents);
+            }            
+            
+            $scope.notifyProgressStarted()
+            .then(loadUser)
+            .finally($scope.notifyProgressCompleted);
 
         }];
 })(Simple, Simple.Inspector);

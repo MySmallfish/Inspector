@@ -1,4 +1,4 @@
-<form novalidate name="theLoginForm" ng-submit="login();">
+<form novalidate name="theLoginForm" ng-submit="login();" ng-hide="loading">
     <div class="row">
         <div class="col-xs-2">&nbsp;</div>
         <div class="col-xs-8">
@@ -24,6 +24,8 @@
         </div>
     </div>
 </form>
+
+<div class="loading" ng-show="loading"></div>
 
 <div class="version">
     <s-app-version></s-app-version> <s-credit></s-credit>

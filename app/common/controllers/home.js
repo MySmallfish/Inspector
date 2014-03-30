@@ -1,4 +1,4 @@
-(function(S, I) {
+(function (S, I) {
     I.HomeController = [
         "$scope",
         "$location",
@@ -30,29 +30,16 @@
             }
 
             function onBarcodeScanned(barCode, context) {
-                
+
                 $scope.barCode = barCode;
                 if (barCode && barCode.length > 0) {
-                    $scope.notifyProgressStarted().then(function() {
+                    $scope.notifyProgressStarted().then(function () {
                         return timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function (e) {
                             onTimeReportError(e, null);
                         });
                     }).finally($scope.notifyProgressCompleted);
                 }
             }
-
-            $scope.$on("Simple.BarcodeScanned",
-                function(e, barCode, context) {
-                    if (!$scope.$$phase) {
-                        $scope.$apply(function() {
-                            onBarcodeScanned(barCode, context);
-                        });
-                    } else {
-                        onBarcodeScanned(barCode, context);
-                    }
-                });
-            
-            
 
             function scanEnter() {
                 if (scanner.isScannerSupported()) {
@@ -81,17 +68,10 @@
             function navigateToManagerReport() {
                 $location.path("/ManagerReport");
             }
-            
-            function sendReports() {
-                timeReportManager.sendAndRemove();
-                console.log("sending reports...");
-            }
 
-            $scope.changeHeader({
-                header: "Inspector",
-                refresh: true,
-                logout: true
-            });
+            function sendFailedReports() {
+                timeReportManager.send();
+            }
 
             _.extend($scope, {
                 scanEnter: scanEnter,
@@ -101,33 +81,56 @@
                 navigateToManagerReport: navigateToManagerReport,
                 navigateToReports: navigateToReports,
                 scanSupported: scanner.isScannerSupported(),
-                sendReports: sendReports
+                sendFailedReports: sendFailedReports
+            });
+
+            $scope.$on("Simple.BarcodeScanned",
+                function (e, barCode, context) {
+                    if (!$scope.$$phase) {
+                        $scope.$apply(function () {
+                            onBarcodeScanned(barCode, context);
+                        });
+                    } else {
+                        onBarcodeScanned(barCode, context);
+                    }
+                });
+
+            $scope.changeHeader({
+                header: "Inspector",
+                refresh: true,
+                logout: true
             });
 
             $scope.isManagerPermissions = true;
             $scope.isReportPermissions = true;
 
-            loginManager.getCurrentUser().then(function (item) {
-                
-                if (typeof item.EmployeeId !== "number" || item.EmployeeId <= 0 || !item.AllowAppLogin) {
-                    
+            function setPermissions(employeeInfo) {
+                if (typeof employeeInfo.EmployeeId !== "number" || employeeInfo.EmployeeId <= 0 || !employeeInfo.AllowAppLogin) {
+
                     $scope.isManagerPermissions = true;
                     $scope.isReportPermissions = false;
                 } else {
-                    console.log("else");
                     $scope.isManagerPermissions = false;
                     $scope.isReportPermissions = true;
                 }
-                console.log("???", $scope.isReportPermissions, item.AllowAppLogin, item.EmployeeId, item);
-            });
-            
+            }
 
-            loginManager.isUserLoggedIn().then(function (user) {
-                user = /*user || */{ managerReportEnabled: true };
-                $scope.managerReportEnabled = user.managerReportEnabled;
-            }, function () {
-                location.href = "#/Login";
-            });
+            function loadUser() {
+                loginManager.isUserLoggedIn().then(function (user) {
+                    user = /*user || */{ managerReportEnabled: true };
+                    $scope.managerReportEnabled = user.managerReportEnabled;
+                }, function () {
+                    location.href = "#/Login";
+                });
+            }
+
+            $scope.notifyProgressStarted()
+                .then(function () {
+                    loginManager.getCurrentUser().then(function (item) {
+                        return setPermissions(item);
+                    });
+                }).then(loadUser())
+            .finally($scope.notifyProgressCompleted);
 
 
         }

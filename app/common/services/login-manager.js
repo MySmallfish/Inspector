@@ -1,7 +1,6 @@
 (function (S) {
-    S.LoginManager = ["storageService", "$q", "inspectorApi", function (storageService, $q, inspectorApi) {
-
-
+    S.LoginManager = ["storageService", "$q", "inspectorApi", "network", function (storageService, $q, inspectorApi, network) {
+        
         function authenticate(userName, password) {
                 return inspectorApi.signIn(userName, password).then(function (item) {
                     

@@ -9,10 +9,10 @@
             
             $scope.timeReport = timeReport;
         });
-        
 
         $scope.approve = function() {
-            timeReportManager.approve(uniqueId).then(function() {
+            timeReportManager.approve(uniqueId).then(function (item) {
+                
                 $location.path("TimeReports");
             }); // ERROR??
         };

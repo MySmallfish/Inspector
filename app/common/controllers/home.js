@@ -81,6 +81,11 @@
             function navigateToManagerReport() {
                 $location.path("/ManagerReport");
             }
+            
+            function sendReports() {
+                timeReportManager.sendAndRemove();
+                console.log("sending reports...");
+            }
 
             $scope.changeHeader({
                 header: "Inspector",
@@ -95,7 +100,8 @@
                 navigateToManualReport: navigateToManualReport,
                 navigateToManagerReport: navigateToManagerReport,
                 navigateToReports: navigateToReports,
-                scanSupported: scanner.isScannerSupported()
+                scanSupported: scanner.isScannerSupported(),
+                sendReports: sendReports
             });
 
             $scope.isManagerPermissions = true;

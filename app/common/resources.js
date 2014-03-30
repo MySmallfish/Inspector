@@ -31,7 +31,10 @@
             "EmployeeMissing": "לא נמצא עובד",
             "SiteMissing": "לא נמצא אתר",
             "LocationNotFound": "לא נמצא מיקום",
-            "UnexpectedError":"אירעה שגיאה בלתי צפויה"
+            "UnexpectedError": "אירעה שגיאה בלתי צפויה",
+            "EnterPassword": "סיסמה",
+            "EnterUserName": "שם משתמש",
+            "SendReports": "שלח דוחות"
         });
     });
 

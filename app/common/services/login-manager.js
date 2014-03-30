@@ -11,10 +11,11 @@
             }
 
             function sessionInfo(value) {
-                return storageService.prefix("SimplyLog").session("User", value);
+                return storageService.prefix("SimplyLog").local("User", value);
             }
 
             var currentUser;
+        
             function login(user) {
                 var result = sessionInfo(user).then(function () {
                     currentUser = user;
@@ -24,9 +25,7 @@
             }
 
             function isValidToken(user) {
-                return true;
-                var isValid = moment().unix() <= (parseInt(user.token.expires_on, 10) + 300);
-                return isValid;
+                return moment().subtract('days', 7) <= moment(user.loggedInAt);
             }
 
         // alertService.show({ title: response.Title, message: response.Text, templateUrl: "app/common/views/alert.html" });

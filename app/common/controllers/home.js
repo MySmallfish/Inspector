@@ -102,13 +102,17 @@
             $scope.isReportPermissions = true;
 
             loginManager.getCurrentUser().then(function (item) {
+                
                 if (typeof item.EmployeeId !== "number" || item.EmployeeId <= 0 || !item.AllowAppLogin) {
+                    
                     $scope.isManagerPermissions = true;
                     $scope.isReportPermissions = false;
                 } else {
+                    console.log("else");
                     $scope.isManagerPermissions = false;
                     $scope.isReportPermissions = true;
                 }
+                console.log("???", $scope.isReportPermissions, item.AllowAppLogin, item.EmployeeId, item);
             });
             
 

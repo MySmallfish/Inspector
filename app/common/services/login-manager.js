@@ -9,8 +9,26 @@
 
         }
 
+        function getRegisteredPhoneNumber() {
+            return sessionInfo().then(function (user) {
+                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId);
+            });
+        }
+
+        function setUserPhoneNumber(phoneNumber) {
+            return sessionInfo().then(function (user) {
+                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId, { number: phoneNumber });
+            });
+        }
+
+        function registerPhoneNumber(phoneNumber) {
+            return sessionInfo().then(function(user) {
+                return inspectorApi.registerPhoneNumber(user.user.UserId, phoneNumber);
+            });
+        }
+
         function sessionInfo(value) {
-            return storageService.prefix("SimplyLog").local("User", value);
+            return storageService.prefix("Inspector").local("User", value);
         }
 
         var currentUser;
@@ -76,7 +94,10 @@
             getCurrentUser: getCurrentUser,
             login: login,
             logout: logout,
-            authenticate: authenticate
+            authenticate: authenticate,
+            registerPhoneNumber: registerPhoneNumber,
+            setUserPhoneNumber: setUserPhoneNumber,
+            getRegisteredPhoneNumber: getRegisteredPhoneNumber
         };
     }];
 })(Simple);

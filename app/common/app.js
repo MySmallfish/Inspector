@@ -8,6 +8,7 @@
 
 	app.controller("AppCtrl", I.AppController);
 	app.controller("LoginCtrl", I.LoginController);
+	app.controller("RegisterPhoneNumberCtrl", I.RegisterPhoneNumberController);
 	app.controller("HomeCtrl", I.HomeController);
 	app.controller("ReportCtrl", I.ReportController);
 	app.controller("TimeReportsCtrl", I.TimeReportsController);

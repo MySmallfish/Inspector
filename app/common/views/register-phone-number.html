@@ -1,0 +1,11 @@
+﻿<br/>
+<div class="alert alert-info">{{"RegisterPhoneNumberHint"|l10n}}</div>
+<h4 ng-hide="registrationCode">{{"EnterYourPhoneNumber"|l10n}}</h4>
+<input type="phone" class="form-control" ng-model="phoneNumber" ng-hide="registrationCode" />
+<h4 ng-show="registrationCode">{{"EnterReceivedCode"|l10n}}</h4>
+<input type="text" class="form-control" ng-model="code" ng-show="registrationCode" />
+
+<br/>
+<br/>
+<button type="button" class="btn btn-block btn-primary" ng-disabled="!phoneNumber.length" ng-click="register()" ng-hide="registrationCode">{{"Register"|l10n}}</button>
+<button type="button" class="btn btn-block btn-primary" ng-disabled="!code.length || code != registrationCode" ng-click="approve()" ng-show="registrationCode">{{"Approve"|l10n}}</button>

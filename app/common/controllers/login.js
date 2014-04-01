@@ -4,11 +4,19 @@
         $scope.changeHeader("Login");
 
         function navigate() {
-            location.href = "#/";
+            loginManager.getRegisteredPhoneNumber().then(function (phoneNumber) {
+                if (!phoneNumber /*|| user.user.PhoneNumber != phoneNumber.number*/) {
+                    location.href = "#/RegisterPhoneNumber";
+                } else {
+                    location.href = "#/";
+                }
+            });
+            
             
         }
 
-        loginManager.isUserLoggedIn().then(function() {
+        loginManager.isUserLoggedIn().then(function (user) {
+
             navigate();
         });
 

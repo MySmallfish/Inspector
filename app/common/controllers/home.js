@@ -117,20 +117,23 @@
 
             function loadUser() {
                 loginManager.isUserLoggedIn().then(function (user) {
-                    user = /*user || */{ managerReportEnabled: true };
-                    $scope.managerReportEnabled = user.managerReportEnabled;
+
+                    setPermissions(user.user);
                 }, function () {
                     location.href = "#/Login";
                 });
             }
 
+            function checkUnsentReports() {
+                timeReportManager.hasUnsentReports().then(function(result) {
+                    $scope.hasUnsentReports = result;
+                });
+            }
+
             $scope.notifyProgressStarted()
-                .then(function () {
-                    loginManager.getCurrentUser().then(function (item) {
-                        return setPermissions(item);
-                    });
-                }).then(loadUser())
-            .finally($scope.notifyProgressCompleted);
+                .then(loadUser())
+                .then(checkUnsentReports)
+                .finally($scope.notifyProgressCompleted);
 
 
         }

@@ -34,7 +34,10 @@
                 $scope.loginError = "AuthenticationFailed";
             }
 
-            authResult.then(loginUser, authenticationFailed);
+            $scope.notifyProgressStarted().then(function() {
+                return authResult.then(loginUser, authenticationFailed);
+            }).finally($scope.notifyProgressCompleted);
+
 
         };
     };

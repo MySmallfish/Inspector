@@ -117,7 +117,6 @@
 
             function loadUser() {
                 loginManager.isUserLoggedIn().then(function (user) {
-
                     setPermissions(user.user);
                 }, function () {
                     location.href = "#/Login";

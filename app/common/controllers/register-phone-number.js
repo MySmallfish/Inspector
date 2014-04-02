@@ -20,7 +20,7 @@
             function approve() {
                 return loginManager.setUserPhoneNumber($scope.phoneNumber).then(navigate);
             }
-
+            
             _.extend($scope, {
                 register: register,
                 approve: approve

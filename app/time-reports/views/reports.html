@@ -10,7 +10,10 @@
      </thead>
      <tbody>
          <tr ng-repeat="report in reports|orderBy:Date:true track by $index">
-             <td><i class="fa fa-warning warning" ng-show="{{report.Status}} == 1"> </i></td>
+             
+             <td >
+            
+             <i class="fa" ng-class="{'fa-download text-info': report.Status == 0, 'fa-warning text-warning': report.Status ==  1, 'fa-check text-success': report.Status == 2, 'fa-refresh fa-spin': report.Status == 3}"> </i></td>
              <td>{{ report.Date | date:"dd/MM/yyyy"}}</td>
              <td>{{ report.Date | date:"HH:mm"}}</td>
              <td>{{ report.Site | entityDescription }}</td>

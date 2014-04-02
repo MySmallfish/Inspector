@@ -12,7 +12,7 @@
 
                 var reportError = errors.indexOf(error);
 
-                if (reportError) {
+                if (reportError>=0) {
                     $scope.reportError = error.error;
                 } else {
                     $scope.reportError = "UnexpectedError";
@@ -22,7 +22,7 @@
             }
 
             function onTimeReported(info) {
-                if (info.success) {
+                if (info && info.success) {
                     $location.path("/ApproveReport").search({ reportId: info.reportId });
                 } else {
                     onTimeReportError(null, info);
@@ -34,9 +34,7 @@
                 $scope.barCode = barCode;
                 if (barCode && barCode.length > 0) {
                     $scope.notifyProgressStarted().then(function () {
-                        return timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function (e) {
-                            onTimeReportError(e, null);
-                        });
+                        return timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, onTimeReportError);
                     }).finally($scope.notifyProgressCompleted);
                 }
             }

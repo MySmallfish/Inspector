@@ -1,27 +1,38 @@
 (function (S) {
-    S.LoginManager = [
-        "storageService", 
-        "$q", function (storageService, $q) {
-
+    S.LoginManager = ["storageService", "$q", "inspectorApi", "network", function (storageService, $q, inspectorApi, network) {
 
         function authenticate(userName, password) {
-            var result = $q.defer();
-            if (userName == "1" && password == "1") {
-                result.resolve();
-            } else {
-                result.reject();
-            }
+            return inspectorApi.signIn(userName, password).then(function (item) {
 
-            return result.promise.then(function (auth) {
-                return auth;
+                return item;
+            });
+
+        }
+
+        function getRegisteredPhoneNumber() {
+            return sessionInfo().then(function (user) {
+                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId);
+            });
+        }
+
+        function setUserPhoneNumber(phoneNumber) {
+            return sessionInfo().then(function (user) {
+                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId, { number: phoneNumber });
+            });
+        }
+
+        function registerPhoneNumber(phoneNumber) {
+            return sessionInfo().then(function(user) {
+                return inspectorApi.registerPhoneNumber(user.user.UserId, phoneNumber);
             });
         }
 
         function sessionInfo(value) {
-            return storageService.prefix("SimplyLog").session("User", value);
+            return storageService.prefix("Inspector").local("User", value);
         }
 
         var currentUser;
+
         function login(user) {
             var result = sessionInfo(user).then(function () {
                 currentUser = user;
@@ -31,11 +42,10 @@
         }
 
         function isValidToken(user) {
-            return true;
-            var isValid = moment().unix() <= (parseInt(user.token.expires_on, 10) + 300);
-            return isValid;
+            return moment().subtract('days', 7) <= moment(user.loggedInAt);
         }
 
+        // alertService.show({ title: response.Title, message: response.Text, templateUrl: "app/common/views/alert.html" });
         function logout() {
             currentUser = null;
             return sessionInfo(null);
@@ -84,7 +94,10 @@
             getCurrentUser: getCurrentUser,
             login: login,
             logout: logout,
-            authenticate: authenticate
+            authenticate: authenticate,
+            registerPhoneNumber: registerPhoneNumber,
+            setUserPhoneNumber: setUserPhoneNumber,
+            getRegisteredPhoneNumber: getRegisteredPhoneNumber
         };
     }];
 })(Simple);

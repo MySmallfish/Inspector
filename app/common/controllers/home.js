@@ -1,4 +1,4 @@
-(function(S, I) {
+(function (S, I) {
     I.HomeController = [
         "$scope",
         "$location",
@@ -8,7 +8,17 @@
 
 
             function onTimeReportError(error, info) {
-                console.error(error, info);
+                var errors = ["EmployeeMissing", "SiteMissing", "LocationNotFound"];
+
+                var reportError = errors.indexOf(error);
+
+                if (reportError) {
+                    $scope.reportError = error.error;
+                } else {
+                    $scope.reportError = "UnexpectedError";
+                }
+
+                console.log("error", error, $scope.reportError, reportError);
             }
 
             function onTimeReported(info) {
@@ -20,27 +30,16 @@
             }
 
             function onBarcodeScanned(barCode, context) {
-                
+
                 $scope.barCode = barCode;
                 if (barCode && barCode.length > 0) {
-                    timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function(e) {
-                        onTimeReportError(e, null);
-                    });
+                    $scope.notifyProgressStarted().then(function () {
+                        return timeReportManager.reportByCode(barCode, context == "Enter").then(onTimeReported, function (e) {
+                            onTimeReportError(e, null);
+                        });
+                    }).finally($scope.notifyProgressCompleted);
                 }
             }
-
-            $scope.$on("Simple.BarcodeScanned",
-                function(e, barCode, context) {
-                    if (!$scope.$$phase) {
-                        $scope.$apply(function() {
-                            onBarcodeScanned(barCode, context);
-                        });
-                    } else {
-                        onBarcodeScanned(barCode, context);
-                    }
-                });
-            
-            
 
             function scanEnter() {
                 if (scanner.isScannerSupported()) {
@@ -73,11 +72,14 @@
                 $location.path("/ManagerReport");
             }
 
-            $scope.changeHeader({
-                header: "Inspector",
-                refresh: true,
-                logout: true
-            });
+            function publish(name, args) {
+                $scope.$root.$broadcast(name, args);
+            }
+
+            function sendFailedReports() {
+                timeReportManager.send();
+                publish("Inspector.ReportsSendCompleted");
+            }
 
             _.extend($scope, {
                 scanEnter: scanEnter,
@@ -86,15 +88,70 @@
                 navigateToManualReport: navigateToManualReport,
                 navigateToManagerReport: navigateToManagerReport,
                 navigateToReports: navigateToReports,
-                scanSupported: scanner.isScannerSupported()
+                scanSupported: scanner.isScannerSupported(),
+                sendFailedReports: sendFailedReports
             });
 
-            loginManager.isUserLoggedIn().then(function (user) {
-                user = /*user || */{ managerReportEnabled: true };
-                $scope.managerReportEnabled = user.managerReportEnabled;
-            }, function () {
-                location.href = "#/Login";
+            $scope.$on("Inspector.ReportsSendCompleted",checkUnsentReports);
+
+            $scope.$on("Simple.BarcodeScanned",
+                function (e, barCode, context) {
+                    if (!$scope.$$phase) {
+                        $scope.$apply(function () {
+                            onBarcodeScanned(barCode, context);
+                        });
+                    } else {
+                        onBarcodeScanned(barCode, context);
+                    }
+                });
+
+            $scope.changeHeader({
+                header: "Inspector",
+                refresh: true,
+                logout: true
             });
+
+            $scope.isManagerPermissions = true;
+            $scope.isReportPermissions = true;
+
+            function setPermissions(employeeInfo) {
+                if (typeof employeeInfo.EmployeeId !== "number" || employeeInfo.EmployeeId <= 0 || !employeeInfo.AllowAppLogin) {
+
+                    $scope.isManagerPermissions = true;
+                    $scope.isReportPermissions = false;
+                } else {
+                    $scope.isManagerPermissions = false;
+                    $scope.isReportPermissions = true;
+                }
+            }
+
+            function loadUser() {
+                loginManager.isUserLoggedIn().then(function (user) {
+                    setPermissions(user.user);
+                }, function () {
+                    location.href = "#/Login";
+                });
+            }
+
+            function checkUnsentReports() {
+                timeReportManager.hasUnsentReports().then(function (result) {
+                    $scope.hasUnsentReports = result;
+                });
+            }
+
+            function prepare() {
+                _.defer(function () {
+                    timeReportManager.clearPending();
+                    timeReportManager.deleteOldReports();
+                });
+            }
+
+            prepare();
+
+            $scope.notifyProgressStarted()
+                .then(loadUser)
+                .then(checkUnsentReports)
+                .finally($scope.notifyProgressCompleted);
 
 
         }

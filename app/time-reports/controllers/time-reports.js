@@ -5,6 +5,7 @@
             header: "TimeReports",
             home: true
         });
+        
         timeReportManager.getTimeReports().then(
             function(reports) {
                 $scope.reports = reports;

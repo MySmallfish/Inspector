@@ -1,27 +1,46 @@
 ﻿(function (S, I) {
-    I.EventTimeReportsController = ["$q", "$scope", "eventReportManager", "employeeService", function ($q, $scope, eventReportManager, employeeService) {
+    I.EventTimeReportsController = ["$q", "$scope", "$routeParams", "eventReportManager", "employeeService", function ($q, $scope, $routeParams, eventReportManager, employeeService) {
+        $scope.timeReports = [];
 
         $scope.changeHeader({
             header: "EventTimeReports",
             back: true
         });
 
-        eventReportManager.getEventById(11).then(function (item) {
+        function createTimeReports(reports) {
+
+            var timeReports = {};
+            _.each(reports, function (report) {
+                var timeReport = timeReports[report.Employee.Id] || {
+                    EmployeeId: report.Employee.Id,
+                    EmployeeName: report.Employee.Name
+                };
+
+                timeReports[report.Employee.Id] = timeReport;
+
+                if (report.IsEnter) {
+                    timeReport.EnterTime = moment(report.Date).format("HH:mm");
+                } else {
+                    timeReport.ExitTime = moment(report.Date).format("HH:mm");
+                }
+
+            });
+
+            $scope.timeReports = _.map(timeReports, function (report, key) {
+                return report;
+            });
+        }
+
+        eventReportManager.getEventById($routeParams.eventId).then(function (item) {
             $scope.event = item;
+
+            eventReportManager.getReportsByEventId($routeParams.eventId).then(function (items) {
+                if (items) {
+                    createTimeReports(items);
+                }
+            });
         });
 
-        $scope.timeReports = [];
-
-        eventReportManager.getReports().then(function (items) {
-            if (items) {
-                $scope.timeReports = items;
-            }
-        });
-
-        //$scope.$on("report-status-selected", function (item) {
-        //    console.log("here???", item);
-        //});
-        //$scope.reportStatus = managerReport.reportStatus;
-  
     }];
+
 })(Simple, Simple.Inspector);

@@ -129,21 +129,33 @@
                 });
             }
 
-            function setTimeReportsStatus() {
-                timeReportManager.getTimeReports().then(function (reports) {
-                    return _.map(reports, function (report) {
-                        if (report.Status === 3) {
-                            report.Status = 1;
-                        }
-                        return report;
-                    });
+            function setTimeReportsStatus(reports) {
+                return _.map(reports, function (report) {
+                    if (report.Status === 1) {
+                        report.Status = 3;
+                    }
+                    return report;
                 });
             }
 
+            function removeOldReports(reports) {
+                return _.filter(reports, function (report) {
+                    return moment().subtract('months', 2) <= moment(report.Date);
+                });
+            }
+
+            function setTimeReports() {
+                timeReportManager.getTimeReports()
+                .then(setTimeReportsStatus)
+                .then(removeOldReports)
+                .then(function (x) {
+                    console.log("xxx", x);
+                });
+            }
 
             $scope.notifyProgressStarted()
                 .then(loadUser())
-                .then(setTimeReportsStatus())
+                .then(setTimeReports())
                 .then(checkUnsentReports)
                 .finally($scope.notifyProgressCompleted);
 

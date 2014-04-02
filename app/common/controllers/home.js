@@ -124,13 +124,26 @@
             }
 
             function checkUnsentReports() {
-                timeReportManager.hasUnsentReports().then(function(result) {
+                timeReportManager.hasUnsentReports().then(function (result) {
                     $scope.hasUnsentReports = result;
                 });
             }
 
+            function setTimeReportsStatus() {
+                timeReportManager.getTimeReports().then(function (reports) {
+                    return _.map(reports, function (report) {
+                        if (report.Status === 3) {
+                            report.Status = 1;
+                        }
+                        return report;
+                    });
+                });
+            }
+
+
             $scope.notifyProgressStarted()
                 .then(loadUser())
+                .then(setTimeReportsStatus())
                 .then(checkUnsentReports)
                 .finally($scope.notifyProgressCompleted);
 

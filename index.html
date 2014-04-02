@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="version" content="1.0.4" />
+    <meta name="base-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
+    <meta name="version" content="1.0.5" />
     <meta name="credit" content='י.ל.מ פתרונות בע"מ' />
     <meta name="format-detection" content="telephone=no" />
     <title>Inspector</title>
@@ -24,100 +25,109 @@
     <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="barcodescanner.js"></script>
 </head>
-    <body class="rtl" ng-controller="AppCtrl">
-        
-        <app-header></app-header>
-        <div data-ng-view class="container">
-        </div>
-        <button class="btn btn-large btn-block btn-success bttttn">SHOOOT!</button>
-        <script src="lib/underscore/underscore.1.6.0.min.js"></script>
-        <script src="lib/moment/moment.min.js"></script>
+<body class="rtl" ng-controller="AppCtrl">
+    <app-header></app-header>
+    <div class="loading-icon" ng-show="isInProgress">
+        <div class="loading"></div>
+        <h3 ng-bind='("Loading"|l10n) + "..."'> </h3>
+    </div>
 
-        <script src="lib/jquery/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <!--<script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-            <script type="text/javascript" src="lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.he.js"></script>-->
+    <div data-ng-view class="container">
+    </div>
 
-        <script src="lib/angular/angular.js"></script>
-        <script src="lib/angular/angular-resource.js"></script>
-        <script src="lib/angular/angular-route.js"></script>
-        <script src="lib/angular/angular-touch.js"></script>
+    <script src="lib/underscore/underscore.1.6.0.min.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
 
-        <!-- Simple Module -->
-        <script src="lib/simple/simple.js"></script>
-        <!-- Services -->
-        <script src="lib/simple/services/utils.js"></script>
-        <script src="lib/simple/services/file-utils.js"></script>
-        <script src="lib/simple/services/attachments-manager.js"></script>
-        <script src="lib/simple/services/phonegap.js"></script>
-        <script src="lib/simple/services/null-camera-service.js"></script>
-        <script src="lib/simple/services/phonegap-camera-service.js"></script>
-        <script src="lib/simple/services/phonegap-remote-storage.js"></script>
-        <script src="lib/simple/services/phonegap-file-manager.js"></script>
-        <script src="lib/simple/services/queue-manager.js"></script>
-        <script src="lib/simple/services/state-manager.js"></script>
-        <script src="lib/simple/services/scanner.js"></script>
-        <script src="lib/simple/services/geo-location.js"></script>
-        <script src="lib/simple/services/storage-service.js"></script>
-        <script src="lib/simple/services/language.js"></script>
-        <script src="lib/simple/services/text-resources.js"></script>
-        <script src="lib/simple/services/safe-apply.js"></script>
-        <script src="lib/simple/services/network-service.js"></script>
-        <script src="lib/simple/services/network-manager.js"></script>
-        <script src="lib/simple/services/configuration.js"></script>
-        <script src="lib/simple/services/azure-active-directory.js"></script>
-        <script src="lib/simple/services/login-manager.js"></script>
-        <script src="lib/simple/services/entity-manager.js"></script>
-        <script src="lib/simple/data/database-service.js"></script>
-        <script src="lib/simple/data/simple.data.js"></script>
+    <script src="lib/jquery/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.he.js"></script>-->
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+    <script src="lib/angular/angular-touch.js"></script>
+
+    <!-- Simple Module -->
+    <script src="lib/simple/simple.js"></script>
+    <!-- Services -->
+    <script src="lib/simple/services/utils.js"></script>
+    <script src="lib/simple/services/file-utils.js"></script>
+    <script src="lib/simple/services/attachments-manager.js"></script>
+    <script src="lib/simple/services/phonegap.js"></script>
+    <script src="lib/simple/services/null-camera-service.js"></script>
+    <script src="lib/simple/services/phonegap-camera-service.js"></script>
+    <script src="lib/simple/services/phonegap-remote-storage.js"></script>
+    <script src="lib/simple/services/phonegap-file-manager.js"></script>
+    <script src="lib/simple/services/queue-manager.js"></script>
+    <script src="lib/simple/services/state-manager.js"></script>
+    <script src="lib/simple/services/scanner.js"></script>
+    <script src="lib/simple/services/geo-location.js"></script>
+    <script src="lib/simple/services/storage-service.js"></script>
+    <script src="lib/simple/services/language.js"></script>
+    <script src="lib/simple/services/text-resources.js"></script>
+    <script src="lib/simple/services/safe-apply.js"></script>
+    <script src="lib/simple/services/network-service.js"></script>
+    <script src="lib/simple/services/network-manager.js"></script>
+    <script src="lib/simple/services/configuration.js"></script>
+    <script src="lib/simple/services/azure-active-directory.js"></script>
+    <script src="lib/simple/services/login-manager.js"></script>
+    <script src="lib/simple/services/entity-manager.js"></script>
+    <script src="lib/simple/data/database-service.js"></script>
+    <script src="lib/simple/data/simple.data.js"></script>
 
 
-        <!-- Filters -->
-        <script src="lib/simple/filters/localize.js"></script>
-        <script src="lib/simple/filters/gps-location.js"></script>
-        <script src="lib/simple/filters/entity-description.js"></script>
-        <!-- Directives -->
-        <script src="lib/simple/directives/simple-nav.js"></script>
-        <script src="lib/simple/directives/hierarchical-select/hierarchical-select.js"></script>
-        <script src="lib/simple/directives/select/select.js"></script>
-        <script src="lib/simple/directives/list/list.js"></script>
-        <script src="lib/simple/directives/scan-barcode/scan-barcode.js"></script>
-        <script src="lib/simple/directives/attachments/attachments.js"></script>
+    <!-- Filters -->
+    <script src="lib/simple/filters/localize.js"></script>
+    <script src="lib/simple/filters/gps-location.js"></script>
+    <script src="lib/simple/filters/entity-description.js"></script>
+    <!-- Directives -->
+    <script src="lib/simple/directives/simple-nav.js"></script>
+    <script src="lib/simple/directives/hierarchical-select/hierarchical-select.js"></script>
+    <script src="lib/simple/directives/select/select.js"></script>
+    <script src="lib/simple/directives/list/list.js"></script>
+    <script src="lib/simple/directives/scan-barcode/scan-barcode.js"></script>
+    <script src="lib/simple/directives/attachments/attachments.js"></script>
 
-        <script src="lib/simple/simple-module.js"></script>
-        <!-- End of Simple Module -->
-        <!-- Simple.Inspector Module -->
-        <script type="text/javascript" src="lib/simple-inspector/inspector.js"></script>
-        <script type="text/javascript" src="lib/simple-inspector/services/site-service.js"></script>
-        <script type="text/javascript" src="lib/simple-inspector/services/event-report-manager.js"></script>
-        <script type="text/javascript" src="lib/simple-inspector/services/employee-service.js"></script>
-        <script type="text/javascript" src="lib/simple-inspector/services/time-report-manager.js"></script>
-        <script type="text/javascript" src="lib/simple-inspector/inspector-module.js"></script>
-        <!-- End of Simple.Inspector Module -->
-        <!-- Services -->
-        <script type="text/javascript" src="app/common/services/login-manager.js"></script>
+    <script src="lib/simple/simple-module.js"></script>
+    <!-- End of Simple Module -->
+    <!-- Simple.Inspector Module -->
+    <script type="text/javascript" src="lib/simple-inspector/inspector.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/site-service.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/event-report-manager.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/employee-service.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/time-report-manager.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/inspector-module.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/inspector-api.js"></script>
+    <script type="text/javascript" src="lib/simple-inspector/services/configuration.js"></script>
+    <!-- End of Simple.Inspector Module -->
 
-        <!-- Filters -->
+    <!-- Services -->
+    <script type="text/javascript" src="app/common/services/login-manager.js"></script>
+    
+    
 
-        <!-- Directives -->
-        <script type="text/javascript" src="app/common/directives/numpad/numpad.js"></script>
-        <script type="text/javascript" src="app/common/directives/app-header/app-header.js"></script>
+    <!-- Filters -->
 
-        <!-- Controllers -->
-        <script type="text/javascript" src="app/common/controllers/app.js"></script>
-        <script type="text/javascript" src="app/common/controllers/login.js"></script>
-        <script type="text/javascript" src="app/common/controllers/home.js"></script>
+    <!-- Directives -->
+    <script type="text/javascript" src="app/common/directives/numpad/numpad.js"></script>
+    <script type="text/javascript" src="app/common/directives/app-header/app-header.js"></script>
 
-        <script type="text/javascript" src="app/time-reports/controllers/report.js"></script>
-        <script type="text/javascript" src="app/time-reports/controllers/manual-report.js"></script>
-        <script type="text/javascript" src="app/time-reports/controllers/time-reports.js"></script>
-        <script type="text/javascript" src="app/manager/controllers/manager-report.js"></script>
-        <script type="text/javascript" src="app/manager/controllers/event-time-reports.js"></script>
+    <!-- Controllers -->
+    <script type="text/javascript" src="app/common/controllers/app.js"></script>
+    <script type="text/javascript" src="app/common/controllers/login.js"></script>
+    <script type="text/javascript" src="app/common/controllers/register-phone-number.js"></script>
+    <script type="text/javascript" src="app/common/controllers/home.js"></script>
 
-        <!-- App Bootstrap -->
-        <script type="text/javascript" src="app/common/app.js"></script>
-        <script type="text/javascript" src="app/common/routes.js"></script>
-        <script type="text/javascript" src="app/common/resources.js"></script>
-        
-    </body>
+    <script type="text/javascript" src="app/time-reports/controllers/report.js"></script>
+    <script type="text/javascript" src="app/time-reports/controllers/manual-report.js"></script>
+    <script type="text/javascript" src="app/time-reports/controllers/time-reports.js"></script>
+    <script type="text/javascript" src="app/manager/controllers/manager-report.js"></script>
+    <script type="text/javascript" src="app/manager/controllers/event-time-reports.js"></script>
+
+    <!-- App Bootstrap -->
+    <script type="text/javascript" src="app/common/app.js"></script>
+    <script type="text/javascript" src="app/common/routes.js"></script>
+    <script type="text/javascript" src="app/common/resources.js"></script>
+</body>
 </html>

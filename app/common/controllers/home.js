@@ -58,9 +58,6 @@
             }
 
             function navigateToReports() {
-                jQuery.getJSON("http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js/sites?userId=13&filter=", function(r) {
-                    console.log("R", r);
-                })
                 $location.path("/TimeReports");
             }
 

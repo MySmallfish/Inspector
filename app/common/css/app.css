@@ -163,3 +163,8 @@ ul.layout {
     z-index: 1010;
     opacity: .8;
 }
+
+.warning {
+    color: #FDAF3B;
+    font-size: 12pt;
+}

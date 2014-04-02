@@ -115,12 +115,14 @@
                 }
             }
 
-            function loadUser() {
-                loginManager.isUserLoggedIn().then(function (user) {
-                    setPermissions(user.user);
-                }, function () {
-                    location.href = "#/Login";
-                });
+            function loadUser(name) {
+                return function() {
+                    loginManager.isUserLoggedIn().then(function(user) {
+                        setPermissions(user.user);
+                    }, function() {
+                        location.href = "#/Login";
+                    });
+                }
             }
 
             function checkUnsentReports() {
@@ -129,33 +131,18 @@
                 });
             }
 
-            function setTimeReportsStatus(reports) {
-                return _.map(reports, function (report) {
-                    if (report.Status === 1) {
-                        report.Status = 3;
-                    }
-                    return report;
+            function prepare() {
+                _.defer(function() {
+                    timeReportManager.clearPending();
+                    timeReportManager.deleteOldReports();
                 });
+                
             }
 
-            function removeOldReports(reports) {
-                return _.filter(reports, function (report) {
-                    return moment().subtract('months', 2) <= moment(report.Date);
-                });
-            }
-
-            function setTimeReports() {
-                timeReportManager.getTimeReports()
-                .then(setTimeReportsStatus)
-                .then(removeOldReports)
-                .then(function (x) {
-                    console.log("xxx", x);
-                });
-            }
+            prepare();
 
             $scope.notifyProgressStarted()
-                .then(loadUser())
-                .then(setTimeReports())
+                .then(loadUser)
                 .then(checkUnsentReports)
                 .finally($scope.notifyProgressCompleted);
 

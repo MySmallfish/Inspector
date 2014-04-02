@@ -9,7 +9,10 @@
      </thead>
      <tbody>
          <tr ng-repeat="report in reports|orderBy:Date:true track by $index">
-             <td>{{ report.Date | date:"dd/MM/yyyy"}}</td>
+             <td>
+                 <i class="fa fa-warning warning" ng-show="{{report.Status}} == 1"> </i>
+                  {{ report.Date | date:"dd/MM/yyyy"}}
+             </td>
              <td>{{ report.Date | date:"HH:mm"}}</td>
              <td>{{ report.Site | entityDescription }}</td>
              <td>{{(report.IsEnter ? "Enter":"Exit")|l10n}}</td>

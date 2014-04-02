@@ -34,7 +34,7 @@
 <div class="row">
     <div class="col-xs-2">&nbsp;</div>
     <div class="col-xs-8">
-        <button ng-hide="true" type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-show="isReportPermissions">{{"ManualReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-show="isReportPermissions">{{"ManualReport"|l10n}}</button>
         <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-show="isManagerPermissions">{{"ManagerReport"|l10n}}</button>
         <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-show="isReportPermissions">{{"TimeReports"|l10n}}</button>
         <button type="button" class="btn btn-warning btn-large btn-block" ng-click="sendFailedReports()" ng-show="hasUnsentReports">{{"SendReports"|l10n}}</button>

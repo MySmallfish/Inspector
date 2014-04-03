@@ -168,3 +168,11 @@ ul.layout {
     color: #FDAF3B;
     font-size: 12pt;
 }
+
+.splash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1010;
+}

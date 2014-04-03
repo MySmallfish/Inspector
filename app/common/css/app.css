@@ -183,9 +183,11 @@ ul.layout {
 }
 
 .legend {
-    font-size: 8pt;
+    font-size: 9pt;
 }
 
-.legend .text {
-    color: black;
+.legend li {
+display: inline;
+margin-right: 3px;
+margin-left: 3px;
 }

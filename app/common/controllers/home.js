@@ -67,13 +67,9 @@
                 $location.path("/ManagerReport");
             }
 
-            function publish(name, args) {
-                $scope.$root.$broadcast(name, args);
-            }
-
             function sendFailedReports() {
                 timeReportManager.send();
-                publish("Inspector.ReportsSendCompleted");
+                
             }
 
             _.extend($scope, {
@@ -87,7 +83,13 @@
                 sendFailedReports: sendFailedReports
             });
 
-            $scope.$on("Inspector.ReportsSendCompleted",checkUnsentReports);
+            function checkUnsentReports() {
+                timeReportManager.hasUnsentReports().then(function (result) {
+                    $scope.hasUnsentReports = result;
+                });
+            }
+
+            $scope.$on("Inspector.ReportsSendCompleted", checkUnsentReports);
 
             $scope.$on("Simple.BarcodeScanned",
                 function (e, barCode, context) {
@@ -128,11 +130,7 @@
                 });
             }
 
-            function checkUnsentReports() {
-                timeReportManager.hasUnsentReports().then(function (result) {
-                    $scope.hasUnsentReports = result;
-                });
-            }
+            
 
             function prepare() {
                 _.defer(function () {
@@ -140,14 +138,13 @@
                     timeReportManager.deleteOldReports();
                 });
             }
-
+            
             prepare();
-
+            
             $scope.notifyProgressStarted()
-                .then(loadUser)
-                .then(checkUnsentReports)
-                .finally($scope.notifyProgressCompleted);
-
+                    .then(loadUser)
+                    .then(checkUnsentReports)
+                    .finally($scope.notifyProgressCompleted);
 
         }
     ];

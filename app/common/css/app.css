@@ -174,5 +174,10 @@ ul.layout {
     top: 0;
     right: 0;
     left: 0;
+    bottom: 0;
     z-index: 1010;
+}
+.splash img {
+    width: 100%;
+    height: 100%;
 }

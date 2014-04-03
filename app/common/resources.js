@@ -40,7 +40,11 @@
             "UnexpectedError": "אירעה שגיאה בלתי צפויה",
             "EnterPassword": "סיסמה",
             "EnterUserName": "שם משתמש",
-            "SendReports": "שלח דוחות"
+            "SendReports": "שלח דוחות",
+            "Sent": "נשלח",
+            "Failed": "נכשל",
+            "Queued": "בתור",
+            "Pending": "בשליחה"
         });
     });
 

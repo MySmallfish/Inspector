@@ -13,7 +13,7 @@
              
              <td >
             
-             <i class="fa" ng-class="{'fa-download text-info': report.Status == 0, 'fa-warning text-warning': report.Status ==  1, 'fa-check text-success': report.Status == 2, 'fa-refresh fa-spin': report.Status == 3}"> </i></td>
+                 <i class="fa" ng-class="{'fa-download text-info': report.Status == 0, 'fa-warning text-warning': report.Status ==  1, 'fa-check text-success': report.Status == 2, 'fa-refresh fa-spin': report.Status == 3}"> </i></td>
              <td>{{ report.Date | date:"dd/MM/yyyy"}}</td>
              <td>{{ report.Date | date:"HH:mm"}}</td>
              <td>{{ report.Site | entityDescription }}</td>
@@ -21,3 +21,10 @@
          </tr>
      </tbody>
  </table>
+<ul class="legend">
+    <li class="fa fa-download text-info"><span class="text"> {{"Queued"|l10n}}</span></li>
+    <li class="fa fa-warning text-warning"><span class="text"> {{"Failed"|l10n}}</span></li>
+    <li class="fa fa-check text-success"><span class="text"> {{"Sent"|l10n}}</span></li>
+    <li class="fa fa-refresh"><span class="text"> {{"Pending"|l10n}}</span></li>
+    
+</ul>

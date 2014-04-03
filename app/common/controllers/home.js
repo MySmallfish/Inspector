@@ -130,7 +130,12 @@
                 });
             }
 
-            
+            function getReports() {
+                return timeReportManager.getTimeReports().then(function(items) {
+                    $scope.reports = items;
+                });
+
+            }
 
             function prepare() {
                 _.defer(function () {
@@ -140,10 +145,11 @@
             }
             
             prepare();
-            
+
             $scope.notifyProgressStarted()
                     .then(loadUser)
                     .then(checkUnsentReports)
+                    .then(getReports)
                     .finally($scope.notifyProgressCompleted);
 
         }

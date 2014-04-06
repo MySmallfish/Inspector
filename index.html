@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="b*ase-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
-    <meta name="base-url" content="http://localhost:1304/ylm/InspectorService/Services/InspectorClientApi.svc/js" />
-    <meta name="version" content="1.0.9" />
+    <meta name="base-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
+    <meta name="b*ase-url" content="http://localhost:1304/ylm/InspectorService/Services/InspectorClientApi.svc/js" />
+    <meta name="version" content="1.0.10" />
     <meta name="credit" content='י.ל.מ פתרונות בע"מ' />
     <meta name="format-detection" content="telephone=no" />
     <title>Inspector</title>
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="barcodescanner.js"></script>
 </head>
-<body class="rtl" ng-controller="AppCtrl">
+<body class="rtl loading" ng-controller="AppCtrl">
 
     <div>
         <app-header></app-header>
@@ -139,16 +139,20 @@
 
 
             angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
-            if (navigator.splashscreen) {
-                setTimeout(function() {
+            
+            setTimeout(function () {
+                if (navigator.splashscreen) {
                     navigator.splashscreen.hide();
+                }
+                $(document.body).removeClass("loading");
                 }, 500);
-                
-            }
+
+            
 
         }
         angular.element(document).ready(whenReady);
         document.addEventListener("deviceready", whenReady, false);
     </script>
 </body>
+
 </html>

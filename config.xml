@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "il.co.ylm.inspector"
-        version   = "1.0.9">
+        version   = "1.0.10">
   <name>Inspector</name>
 
   <description>
@@ -24,13 +24,15 @@
   
   <!-- Do not auto hide splash on iOS -->
   <preference name="AutoHideSplashScreen" value="false" />
+  <preference name="splash-screen-duration" value="false" />
+  
   <!-- Do not auto hide splash on Android -->
-  <preference name="SplashScreenDelay" value="10000"/>
+  <preference name="splash-screen-duration" value="10000"/>
 
   
   <preference name="phonegap-version" value="3.3.0" />
   <preference name="orientation"      value="portrait" />
-  <preference name="target-device"    value="smartphone" />
+  <preference name="target-device"    value="universal" />
   <preference name="fullscreen"       value="false" />
   <preference name="webviewbounce" value="false" />
   <preference name="detect-data-types" value="false" />

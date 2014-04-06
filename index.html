@@ -27,10 +27,8 @@
     <script type="text/javascript" src="barcodescanner.js"></script>
 </head>
 <body class="rtl" ng-controller="AppCtrl">
-    <div class="splash" ng-hide="true">
-        <img src="assets/splash/inspector-splash.png" />
-    </div>
-    <div ng-show="true">
+
+    <div >
         <app-header></app-header>
         <div class="loading-icon" ng-show="isInProgress">
             <div class="loading"></div>
@@ -140,9 +138,12 @@
         function whenReady() {
             if (alreadyBootstrapped)return;
             alreadyBootstrapped = true;
-            setTimeout(function() {
+            setTimeout(function () {
+                if (navigator.splashscreen) {
+                    navigator.splashscreen.hide();
+                }
                 angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
-            },300);
+            },200);
 
         }
         angular.element(document).ready(whenReady);

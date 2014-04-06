@@ -140,12 +140,9 @@
 
             angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
             
-            setTimeout(function () {
                 if (navigator.splashscreen) {
                     navigator.splashscreen.hide();
                 }
-                $(document.body).removeClass("loading");
-                }, 500);
 
             
 

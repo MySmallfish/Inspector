@@ -139,8 +139,10 @@
 
             function prepare() {
                 _.defer(function () {
-                    timeReportManager.clearPending();
-                    timeReportManager.deleteOldReports();
+
+                    timeReportManager.clearPending()
+                        .then(timeReportManager.deleteOldReports);
+
                 });
             }
             

@@ -1,13 +1,13 @@
 (function (S, I) {
     I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", "loginManager","$timeout",
         function ($scope, $location, eventReportManager, employeeService, timeReportManager, loginManager, $timeout) {
-            
+            var selectedEventId = $scope.$root.lastSelectedEventId;
             function loadEvents(userid) {
                 eventReportManager.getEvents(userid).then(function (items) {
                     $scope.events = items;
                     $timeout(function () {
-                        $scope.selectedEventId = $scope.$root.lastSelectedEventId;
-                    },100);
+                        $scope.selectedEventId = selectedEventId;
+                    });
                 });
             }
 
@@ -32,9 +32,8 @@
 
             function buildReport() {
                 var employeeReport = {
-                    employeeId: $scope.employee.Id,
+                    employee: { Id: $scope.employee.Id, Name: $scope.employee.Name },
                     isEnter: $scope.isEnter,
-                    employeeCode: $scope.reportBarCode,
                     eventId: $scope.selectedEventId
                 };
                 return employeeReport;

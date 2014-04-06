@@ -11,19 +11,19 @@
 
         function getRegisteredPhoneNumber() {
             return sessionInfo().then(function (user) {
-                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId);
+                return storageService.prefix("Inspector").local("UserPhoneNumber" /*+ user.user.UserId*/);
             });
         }
 
         function setUserPhoneNumber(phoneNumber) {
             return sessionInfo().then(function (user) {
-                return storageService.prefix("Inspector").local("UserPhoneNumber-" + user.user.UserId, { number: phoneNumber });
+                return storageService.prefix("Inspector").local("UserPhoneNumber" /*+ user.user.UserId */, { number: phoneNumber });
             });
         }
 
         function registerPhoneNumber(phoneNumber) {
             return sessionInfo().then(function(user) {
-                return inspectorApi.registerPhoneNumber(user.user.UserId, phoneNumber);
+                return inspectorApi.registerPhoneNumber(user.user.UserId, user.user.EmployeeId, phoneNumber);
             });
         }
 
@@ -36,13 +36,14 @@
         function login(user) {
             var result = sessionInfo(user).then(function () {
                 currentUser = user;
+                return user;
             });
 
             return result;
         }
 
         function isValidToken(user) {
-            return moment().subtract('days', 7) <= moment(user.loggedInAt);
+            return moment().subtract('days', 7).unix() <= moment(user.loggedInAt).unix();
         }
 
         // alertService.show({ title: response.Title, message: response.Text, templateUrl: "app/common/views/alert.html" });

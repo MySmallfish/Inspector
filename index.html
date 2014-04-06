@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="base-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
-    <meta name="version" content="1.0.7" />
+    <meta name="b*ase-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
+    <meta name="base-url" content="http://localhost:1304/ylm/InspectorService/Services/InspectorClientApi.svc/js" />
+    <meta name="version" content="1.0.8" />
     <meta name="credit" content='י.ל.מ פתרונות בע"מ' />
     <meta name="format-detection" content="telephone=no" />
     <title>Inspector</title>
@@ -27,17 +28,18 @@
 </head>
 <body class="rtl" ng-controller="AppCtrl">
     <div class="splash" ng-hide="true">
-        <img src="assets/splash/inspector-splash.png" /><div class="loading"></div>
+        <img src="assets/splash/inspector-splash.png" />
     </div>
-    <app-header></app-header>
-    <div class="loading-icon" ng-show="isInProgress">
-        <div class="loading"></div>
-        <h3 ng-bind='("Loading"|l10n) + "..."'></h3>
-    </div>
+    <div ng-show="true">
+        <app-header></app-header>
+        <div class="loading-icon" ng-show="isInProgress">
+            <div class="loading"></div>
+            <h3 ng-bind='("Loading"|l10n) + "..."'></h3>
+        </div>
 
-    <div data-ng-view class="container">
+        <div data-ng-view class="container">
+        </div>
     </div>
-
     <script src="lib/underscore/underscore.1.6.0.min.js"></script>
     <script src="lib/moment/moment.min.js"></script>
 

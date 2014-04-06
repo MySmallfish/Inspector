@@ -3,28 +3,40 @@
 
         $scope.changeHeader("Login");
 
-        function navigate() {
-            loginManager.getRegisteredPhoneNumber().then(function (phoneNumber) {
-                if (!phoneNumber /*|| user.user.PhoneNumber != phoneNumber.number*/) {
-                    location.href = "#/RegisterPhoneNumber";
-                } else {
-                    location.href = "#/";
-                }
-            });
-            
-            
+        function navigateHome() {
+            location.href = "#/";
         }
 
-        loginManager.isUserLoggedIn().then(function (user) {
+        function navigate(user) {
+            if (user.user.EmployeeId && user.user.EmployeeId > 0) {
+                loginManager.getRegisteredPhoneNumber().then(function(phoneNumber) {
+                    if (!phoneNumber) {
+                        location.href = "#/RegisterPhoneNumber";
+                    } else {
+                        console.log("user.user.PhoneNumber != phoneNumber.number", user.user.PhoneNumber, phoneNumber.number);
+                        if (user.user.PhoneNumber != phoneNumber.number) {
 
-            navigate();
-        });
+                            loginManager.logout().then(function() {
+                                $scope.loginError = "InvalidPhoneNumber";
+                                
+                            });
+                        } else {
+                            navigateHome();
+                        }
+                    }
+                });
+            } else {
+                navigateHome();
+            }
+        }
+
+        loginManager.isUserLoggedIn().then(navigate);
 
         $scope.login = function() {
             var authResult = loginManager.authenticate($scope.Username, $scope.Password);
 
             function loginUser(userInfo) {
-                loginManager.login({
+                return loginManager.login({
                     user: userInfo,
                     loggedInAt: moment().format("YYYY-MM-DD HH:mm")
                 }).then(navigate);

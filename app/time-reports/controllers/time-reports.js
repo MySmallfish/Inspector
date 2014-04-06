@@ -5,12 +5,17 @@
             header: "TimeReports",
             home: true
         });
-        
-        timeReportManager.getTimeReports().then(
-            function(reports) {
-                $scope.reports = reports;
-                
-            });
-        
-	}];
+
+        $scope.$on("Inspector.ReportsSendCompleted", load);
+
+        function load() {
+            timeReportManager.getTimeReports().then(
+                function (reports) {
+                    $scope.reports = reports;
+                });
+        }
+
+        load();
+
+    }];
 })(Simple, Simple.Inspector);

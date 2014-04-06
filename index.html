@@ -137,11 +137,14 @@
             if (alreadyBootstrapped) return;
             alreadyBootstrapped = true;
 
-            if (navigator.splashscreen) {
-                navigator.splashscreen.hide();
-            }
-            angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
 
+            angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
+            if (navigator.splashscreen) {
+                setTimeout(function() {
+                    navigator.splashscreen.hide();
+                }, 500);
+                
+            }
 
         }
         angular.element(document).ready(whenReady);

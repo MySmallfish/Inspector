@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="he-IL" ng-app="Simple.Inspector.InspectorApp">
+<html lang="he-IL" >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
@@ -134,5 +134,19 @@
     <script type="text/javascript" src="app/common/app.js"></script>
     <script type="text/javascript" src="app/common/routes.js"></script>
     <script type="text/javascript" src="app/common/resources.js"></script>
+    
+    <script>
+        var alreadyBootstrapped = false;
+        function whenReady() {
+            if (alreadyBootstrapped)return;
+            alreadyBootstrapped = true;
+            setTimeout(function() {
+                angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
+            },300);
+
+        }
+        angular.element(document).ready(whenReady);
+        document.addEventListener("deviceready", whenReady, false);
+    </script>
 </body>
 </html>

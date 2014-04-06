@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="he-IL" >
+<html lang="he-IL">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="b*ase-url" content="http://me.simpl.co.il/ylm2/InspectorService/Services/InspectorClientApi.svc/js" />
     <meta name="base-url" content="http://localhost:1304/ylm/InspectorService/Services/InspectorClientApi.svc/js" />
-    <meta name="version" content="1.0.8" />
+    <meta name="version" content="1.0.9" />
     <meta name="credit" content='י.ל.מ פתרונות בע"מ' />
     <meta name="format-detection" content="telephone=no" />
     <title>Inspector</title>
@@ -28,7 +28,7 @@
 </head>
 <body class="rtl" ng-controller="AppCtrl">
 
-    <div >
+    <div>
         <app-header></app-header>
         <div class="loading-icon" ng-show="isInProgress">
             <div class="loading"></div>
@@ -104,14 +104,12 @@
     <script type="text/javascript" src="lib/simple-inspector/services/inspector-api.js"></script>
     <script type="text/javascript" src="lib/simple-inspector/services/configuration.js"></script>
     <!-- End of Simple.Inspector Module -->
-
     <!-- Services -->
     <script type="text/javascript" src="app/common/services/login-manager.js"></script>
 
 
 
     <!-- Filters -->
-
     <!-- Directives -->
     <script type="text/javascript" src="app/common/directives/numpad/numpad.js"></script>
     <script type="text/javascript" src="app/common/directives/app-header/app-header.js"></script>
@@ -132,18 +130,18 @@
     <script type="text/javascript" src="app/common/app.js"></script>
     <script type="text/javascript" src="app/common/routes.js"></script>
     <script type="text/javascript" src="app/common/resources.js"></script>
-    
+
     <script>
         var alreadyBootstrapped = false;
         function whenReady() {
-            if (alreadyBootstrapped)return;
+            if (alreadyBootstrapped) return;
             alreadyBootstrapped = true;
-            setTimeout(function () {
-                if (navigator.splashscreen) {
-                    navigator.splashscreen.hide();
-                }
-                angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
-            },200);
+
+            if (navigator.splashscreen) {
+                navigator.splashscreen.hide();
+            }
+            angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
+
 
         }
         angular.element(document).ready(whenReady);

@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "il.co.ylm.inspector"
-        version   = "1.0.8">
+        version   = "1.0.9">
   <name>Inspector</name>
 
   <description>
@@ -21,7 +21,13 @@
   <feature name="http://api.phonegap.com/1.0/media"/>
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/notification"/>
+  
+  <!-- Do not auto hide splash on iOS -->
+  <preference name="AutoHideSplashScreen" value="false" />
+  <!-- Do not auto hide splash on Android -->
+  <preference name="SplashScreenDelay" value="10000"/>
 
+  
   <preference name="phonegap-version" value="3.3.0" />
   <preference name="orientation"      value="portrait" />
   <preference name="target-device"    value="smartphone" />
@@ -57,6 +63,7 @@
   <gap:splash src="splash/ios/ipad-retina-landscape.png" gap:platform="ios" width="2048" height="1496" />
   <gap:splash src="splash/ios/ipad-retina-portrait.png" gap:platform="ios" width="1536" height="2008" />
 
+  <gap:plugin name="org.apache.cordova.splashscreen" />
   <gap:plugin name="org.apache.cordova.file" />
   <gap:plugin name="org.apache.cordova.file-transfer" />
   <gap:plugin name="org.apache.cordova.camera" />

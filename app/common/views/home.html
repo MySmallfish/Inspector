@@ -1,6 +1,6 @@
 ﻿
 <div class="loading" ng-show="loading"></div>
-<div ng-show="isReportPermissions">
+<div ng-show="hasBarcodePermissions">
     <h3>{{"ReportHeader"|l10n}}</h3>
     <div class="row">
         <div class="col-xs-1">&nbsp;</div>
@@ -34,9 +34,9 @@
 <div class="row">
     <div class="col-xs-2">&nbsp;</div>
     <div class="col-xs-8">
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-hide="true">{{"ManualReport"|l10n}}</button>
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-show="isManagerPermissions">{{"ManagerReport"|l10n}}</button>
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-show="isReportPermissions" ng-disabled="!reports">{{"TimeReports"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-show="hasManualPermissions">{{"ManualReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-show="hasManagerPermissions">{{"ManagerReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-show="hasBarcodePermissions || hasManualPermissions" ng-disabled="!reports">{{"TimeReports"|l10n}}</button>
         <button type="button" class="btn btn-warning btn-large btn-block" ng-click="sendFailedReports()" ng-show="hasUnsentReports">{{"SendReports"|l10n}}</button>
     </div>
 </div>

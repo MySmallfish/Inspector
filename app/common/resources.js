@@ -47,7 +47,8 @@
             "Sent": "נשלח",
             "Failed": "נכשל",
             "Queued": "בתור",
-            "Pending": "בשליחה"
+            "Pending": "בשליחה",
+            "ManualReportForSite": "דיווח נוכחות לאתר: "
         });
     });
 

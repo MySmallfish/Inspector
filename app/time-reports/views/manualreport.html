@@ -1,5 +1,6 @@
-﻿<numpad number="number" command="command" max-length="{{maxSiteCodeLength}}"></numpad>
-
+﻿
+<numpad ng-hide="siteId" number="number" command="command" max-length="{{maxSiteCodeLength}}"></numpad>
+<h3 ng-show="siteId">{{"ManualReportForSite"|l10n}}{{siteName || "..."}}</h3>
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5">

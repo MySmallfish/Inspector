@@ -108,17 +108,23 @@
                 logout: true
             });
 
-            $scope.isManagerPermissions = true;
-            $scope.isReportPermissions = true;
+            $scope.hasManagerPermissions = false;
+            $scope.hasBarcodePermissions = false;
+            $scope.hasManualPermissions = false;
+
+            function hasPermission(employee, requiredPermission) {
+                return !!((employee.AppPermissions & requiredPermission) === requiredPermission);
+            }
 
             function setPermissions(employeeInfo) {
-                if (typeof employeeInfo.EmployeeId !== "number" || employeeInfo.EmployeeId <= 0 || !employeeInfo.AllowAppLogin) {
-
-                    $scope.isManagerPermissions = true;
-                    $scope.isReportPermissions = false;
-                } else {
-                    $scope.isManagerPermissions = false;
-                    $scope.isReportPermissions = true;
+                if (hasPermission(employeeInfo, 1) && employeeInfo.EmployeeId) {
+                    $scope.hasBarcodePermissions = true;
+                }
+                if (hasPermission(employeeInfo, 2) && employeeInfo.EmployeeId) {
+                    $scope.hasManualPermissions = true;
+                }
+                if (hasPermission(employeeInfo, 4)) {
+                    $scope.hasManagerPermissions = true;
                 }
             }
 

@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "il.co.ylm.inspector"
-        version   = "1.0.13">
+        version   = "1.0.14">
   <name>Inspector</name>
 
   <description>
@@ -70,7 +70,8 @@
   <gap:plugin name="org.apache.cordova.camera" />
   <gap:plugin name="org.apache.cordova.geolocation" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-
+  <gap:plugin name="com.phonegap.plugin.statusbar" />
+  
   <gap:platform name="ios" />
   <gap:platform name="android" />
 </widget>

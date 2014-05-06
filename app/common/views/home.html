@@ -28,9 +28,15 @@
             <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!scanSupported && !barCode" ng-click="scanExit()">{{"Exit"|l10n}}</button>
         </div>
     </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8"><div ng-show="reportApproved" class="alert alert-success">{{"ReportApproved"|l10n}}</div></div>
+    </div>
+    
 </div>
 
-<h3>{{"ActionsHeader"|l10n}}</h3>
+<!--<h3>{{"ActionsHeader"|l10n}}</h3>-->
 <div class="row">
     <div class="col-xs-2">&nbsp;</div>
     <div class="col-xs-8">
@@ -40,3 +46,4 @@
         <button type="button" class="btn btn-warning btn-large btn-block" ng-click="sendFailedReports()" ng-show="hasUnsentReports">{{"SendReports"|l10n}}</button>
     </div>
 </div>
+<div class="alert alert-info" ng-show="!hasManualPermissions && !hasManagerPermissions && !hasBarcodePermissions">{{"NoPermissions"|l10n}}</div>

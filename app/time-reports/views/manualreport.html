@@ -4,10 +4,11 @@
 <div class="row">
     <div class="col-xs-1">&nbsp;</div>
     <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!number" ng-click="enter()">{{"Enter"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!number && !siteId" ng-click="enter()">{{"Enter"|l10n}}</button>
     </div>
     <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!number" ng-click="exit()">{{"Exit"|l10n}}</button>
+        <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!number && !siteId" ng-click="exit()">{{"Exit"|l10n}}</button>
     </div>
 </div>
+
 

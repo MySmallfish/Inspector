@@ -1,6 +1,6 @@
-﻿(function(S, I) {
-    I.ManualReportController = ["$scope", "$location", "timeReportManager", "loginManager", "siteService", function ($scope, $location, timeReportManager, loginManager, siteService) {
-        loginManager.getCurrentUser().then(function(user) {
+﻿(function (S, I) {
+    I.ManualReportController = ["$scope", "$location", "timeReportManager", "loginManager", "siteService", "configuration", function ($scope, $location, timeReportManager, loginManager, siteService, configuration) {
+        loginManager.getCurrentUser().then(function (user) {
             $scope.siteId = user.SiteId;
             siteService.getById(user.SiteId).then(loadSite);
         });
@@ -14,13 +14,20 @@
 
         function onTimeReported(info) {
             if (info.success) {
-                $location.path("/ApproveReport").search({ reportId: info.reportId });
+                if (configuration.autoCommitReport) {
+                    timeReportManager.approve(info.reportId);
+                    $location.path("/").search({ displaySuccess: true });
+                } else {
+
+                    $location.path("/ApproveReport").search({ reportId: info.reportId });
+                }
             } else {
                 onTimeReportError(null, info);
             }
         }
 
         function enter() {
+
             return report("Enter");
         }
 
@@ -28,11 +35,11 @@
             return report("Exit");
         }
         function report(context) {
+            $scope.reportApproved = false;
             var siteId = String($scope.number);
             if ($scope.siteId) {
                 siteId = $scope.siteId;
             }
-            console.log("SITEid", siteId);
             timeReportManager.reportByCode(siteId, context == "Enter").then(onTimeReported, function (e) {
                 onTimeReportError(e, null);
             });

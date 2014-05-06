@@ -4,8 +4,13 @@
         "$location",
         "loginManager",
         "scanner",
-        "timeReportManager", function ($scope, $location, loginManager, scanner, timeReportManager) {
-
+        "timeReportManager",
+        "configuration",
+        "$routeParams",
+        function ($scope, $location, loginManager, scanner, timeReportManager, configuration, $routeParams) {
+            if ($routeParams.displaySuccess) {
+                $scope.reportApproved = true;
+            }
 
             function onTimeReportError(error, info) {
                 var errors = ["EmployeeMissing", "SiteMissing", "LocationNotFound"];
@@ -23,7 +28,12 @@
 
             function onTimeReported(info) {
                 if (info && info.success) {
-                    $location.path("/ApproveReport").search({ reportId: info.reportId });
+                    if (configuration.autoCommitReport) {
+                        timeReportManager.approve(info.reportId);
+                        $scope.reportApproved = true;
+                    } else {
+                        $location.path("/ApproveReport").search({ reportId: info.reportId });
+                    }
                 } else {
                     onTimeReportError(null, info);
                 }
@@ -40,6 +50,7 @@
             }
 
             function scanEnter() {
+                $scope.reportApproved = false;
                 if (scanner.isScannerSupported()) {
                     scanner.scan("Enter");
                 } else {
@@ -48,6 +59,7 @@
             }
 
             function scanExit() {
+                $scope.reportApproved = false;
                 if (scanner.isScannerSupported()) {
                     scanner.scan("Exit");
                 } else {

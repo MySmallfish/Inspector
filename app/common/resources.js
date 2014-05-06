@@ -48,7 +48,9 @@
             "Failed": "נכשל",
             "Queued": "בתור",
             "Pending": "בשליחה",
-            "ManualReportForSite": "דיווח נוכחות לאתר: "
+            "ManualReportForSite": "דיווח נוכחות לאתר: ",
+            "ReportApproved": "הדיווח נקלט בהצלחה.",
+            "NoPermissions":"לא הוגדרו הרשאות לדיווח. נא פנה לתמיכה לקבלת הרשאות מתאימות."
         });
     });
 

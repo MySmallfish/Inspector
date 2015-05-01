@@ -1,0 +1,22 @@
+{
+  "name": "Inspector",
+  "version": "1.1.20",
+  "versionNumber": 11119,
+  "description": "Inspector Mobile",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-jade": "~0.12.0",
+    "grunt-phonegap-build": "0.0.8",
+    "grunt-zipstream": "~0.2.2",
+    "grunt-contrib-compress": "~0.9.1",
+    "grunt-bumpup": "~0.5.2",
+    "grunt-phonegap": "~0.15.2",
+    "grunt-git": "~0.2.11",
+    "grunt-testflight": "~0.1.1"
+  }
+}

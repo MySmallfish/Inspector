@@ -1,0 +1,24 @@
+﻿<div class="list">
+    <div class="item item-button-left item-icon-right" ng-hide="hideSelectionConfirm">
+        <span ng-hide="selectedItemParts">{{"Select"|l10n}}</span>
+        <split-content content="selectedItemParts"></split-content>
+        <i class="icon ion-ios7-close-empty" ng-show="selectedItem" ng-click="clearSelection()"></i>
+        <button class="button button-positive" ng-disabled="cannotSelect || (mandatory && !selectedItem)" ng-click="confirmSelection()">
+            {{"ConfirmSelection"|l10n}}
+        </button>
+    </div>
+    <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="searchTerm" placeholder="{{'Search'|l10n}}" />
+    </label>
+</div>
+
+<div class="list items scrollable">
+    <div class="item item-icon-right" ng-repeat="item in (searchTerm ? searchResults : items)" ng-click="select(item)" ng-class="{'has-children': item.HasChildren}">
+        <div ng-if="item.ColorHint" class="color-hint" ng-style="{'background-color': item.ColorHint }"></div>
+        {{item.Text}}
+        <div class="item-note" ng-show="item.IsSearchResult">
+                <split-content content="item.Parts"></split-content>
+        </div>
+    </div>
+</div>

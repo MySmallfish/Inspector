@@ -8,40 +8,52 @@
 
 <div class="loading" ng-show="loading"></div>
 
-<div class="row">
-    <div class="col-xs-1">&nbsp;</div>
-    <div class="col-xs-5 enter-button">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-click="managerScanEnter()" ng-disabled="!selectedEventId">
-            <i class="fa fa-check" ng-show="isEnter"></i>{{"Enter"|l10n}}
-        </button>
-    </div>
-    <div class="col-xs-5 exit-button">
-        <button type="button" class="btn btn-block btn-large btn-danger" ng-click="managerScanExit()" ng-disabled="!selectedEventId">
-            <i class="fa fa-check" ng-hide="isEnter"></i>{{"Exit"|l10n}}
-        </button>
-    </div>
+
+
+<div class="alert alert-warning" ng-if="!selectedEventId">
+    {{"PleaseSelectEvent"|l10n}}
 </div>
-
-<div class="scan-employee">
-    <h4 class="report-header">{{"ReportHeader"|l10n}}</h4>
-    <s-scan-barcode id="simulated-report" barcode="reportBarCode" disabled="!selectedEventId"></s-scan-barcode>
-
-</div>
-
-<div class="employee-details">
-
-    <div class="employee-image"><img src="{{employee.ImageUrl}}" /></div>
-    <div class="employee-name">{{employee.Name}}<div ng-hide="employee.Name">{{"WaitingForScan"|l10n}}...</div></div>
-    
-</div>
-
-<div class="row">
-    <div class="col-xs-1">&nbsp;</div>
-    <div class="col-xs-5">
-        <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()" ng-disabled="!selectedEventId">{{"TimeReports"|l10n}}</button>
+<div ng-if="selectedEventId">
+    <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-5 enter-button">
+            <button type="button" class="btn btn-block btn-large btn-success" ng-click="managerScanEnter()" ng-disabled="!selectedEventId">
+                <i class="fa fa-check" ng-show="isEnter"></i>{{"Enter"|l10n}}
+            </button>
+        </div>
+        <div class="col-xs-5 exit-button">
+            <button type="button" class="btn btn-block btn-large btn-danger" ng-click="managerScanExit()" ng-disabled="!selectedEventId">
+                <i class="fa fa-check" ng-hide="isEnter"></i>{{"Exit"|l10n}}
+            </button>
+        </div>
     </div>
-    <div class="col-xs-5 approve-button">
-        <button type="button" class="btn btn-block btn-large btn-success" ng-click="report()" ng-disabled="!(reportBarCode)">{{"Approve"|l10n}}</button>
-    </div>
-</div>
+    <div class="scan-employee">
+        <h4 class="report-header">{{"ReportHeader"|l10n}}</h4>
+        <s-scan-barcode id="simulated-report" barcode="reportBarCode" disabled="!selectedEventId"></s-scan-barcode>
 
+    </div>
+
+
+    <div class="employee-details" ng-if="employee">
+        <h4 ng-if="!employee.ImageUrl">{{"NoImage"|l10n}}</h4>
+        <div class="employee-image" ng-if="employee.ImageUrl">
+
+            <img ng-src="{{employee.ImageUrl}}" />
+        </div>
+        <div class="employee-name">{{employee.Name}}<div ng-hide="employee.Name">{{"WaitingForScan"|l10n}}...</div></div>
+
+    </div>
+    <div class="alert alert-danger" ng-if="scanError">
+        {{scanError|l10n}}
+    </div>
+    <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-5">
+            <button type="button" class="btn btn-block btn-large btn-default" ng-click="navigateToEventReports()" ng-disabled="!selectedEventId">{{"TimeReports"|l10n}}</button>
+        </div>
+        <div class="col-xs-5 approve-button">
+            <button type="button" class="btn btn-block btn-large btn-success" ng-click="report()" ng-disabled="!employee || !selectedEventId">{{"Approve"|l10n}}</button>
+        </div>
+    </div>
+
+</div>

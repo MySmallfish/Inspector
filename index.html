@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="he-IL">
+<html lang="he-IL" ng-app="Simple.Inspector.InspectorApp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
@@ -22,8 +22,7 @@
     <link rel="stylesheet" type="text/css" href="app/common/directives/numpad/numpad.css" />
     <link rel="stylesheet" type="text/css" href="app/common/directives/app-header/app-header.css" />
     <link rel="stylesheet" type="text/css" href="lib/simple/directives/scan-barcode/scan-barcode.css" />
-
-    <link type="text/css" rel="stylesheet" href="app/common/css/app.css" />
+    <link type="text/css" rel="stylesheet" href="app/css/app.css" />
 
 
     <script type="text/javascript" src="phonegap.js"></script>
@@ -45,10 +44,7 @@
     <script src="lib/moment/moment.min.js"></script>
 
     <script src="lib/jquery/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <!--<script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-            <script type="text/javascript" src="lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.he.js"></script>-->
-
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-resource.js"></script>
     <script src="lib/angular/angular-route.js"></script>
@@ -58,6 +54,7 @@
     <script src="lib/simple/simple.js"></script>
     <!-- Services -->
     <script src="lib/simple/services/utils.js"></script>
+    <script src="lib/simple/services/logger-provider.js"></script>
     <script src="lib/simple/services/file-utils.js"></script>
     <script src="lib/simple/services/attachments-manager.js"></script>
     <script src="lib/simple/services/phonegap.js"></script>
@@ -68,6 +65,7 @@
     <script src="lib/simple/services/queue-manager.js"></script>
     <script src="lib/simple/services/state-manager.js"></script>
     <script src="lib/simple/services/scanner.js"></script>
+    <script src="lib/simple/services/flashlight.js"></script>
     <script src="lib/simple/services/geo-location.js"></script>
     <script src="lib/simple/services/storage-service.js"></script>
     <script src="lib/simple/services/language.js"></script>
@@ -79,8 +77,12 @@
     <script src="lib/simple/services/azure-active-directory.js"></script>
     <script src="lib/simple/services/login-manager.js"></script>
     <script src="lib/simple/services/entity-manager.js"></script>
+    <script src="lib/simple/services/alert-service.js"></script>
+    <script src="lib/simple/services/simplylog-client.js"></script>
+    
     <script src="lib/simple/data/database-service.js"></script>
     <script src="lib/simple/data/simple.data.js"></script>
+    
 
 
     <!-- Filters -->
@@ -94,6 +96,7 @@
     <script src="lib/simple/directives/list/list.js"></script>
     <script src="lib/simple/directives/scan-barcode/scan-barcode.js"></script>
     <script src="lib/simple/directives/attachments/attachments.js"></script>
+    <script src="lib/simple/directives/wizard/wizard.js"></script>
 
     <script src="lib/simple/simple-module.js"></script>
     <!-- End of Simple Module -->
@@ -133,24 +136,34 @@
     <script type="text/javascript" src="app/common/app.js"></script>
     <script type="text/javascript" src="app/common/routes.js"></script>
     <script type="text/javascript" src="app/common/resources.js"></script>
-
+    <script type="text/javascript" src="http://cloudfront.loggly.com/js/loggly.tracker.js" async></script>
     <script>
-        var alreadyBootstrapped = false;
         function whenReady() {
-            if (alreadyBootstrapped) return;
-            alreadyBootstrapped = true;
+            if (navigator.splashscreen) {
+                navigator.splashscreen.show();
+            }
+            if (typeof StatusBar !== "undefined") {
+                StatusBar.overlaysWebView(false);
+            }
 
+            document.addEventListener("backbutton", function () {
+                // pass exitApp as callbacks to the switchOff method
+                if (window.plugins.flashlight) {
+                    window.plugins.flashlight.switchOff(exitApp, exitApp);
+                }
+            }, false);
 
-            angular.bootstrap(document, ["Simple.Inspector.InspectorApp"]);
-            
+            function exitApp() {
+                navigator.app.exitApp();
+            }
+
+            setTimeout(function () {
                 if (navigator.splashscreen) {
                     navigator.splashscreen.hide();
                 }
-
-            
+            }, 750);
 
         }
-        angular.element(document).ready(whenReady);
         document.addEventListener("deviceready", whenReady, false);
     </script>
 </body>

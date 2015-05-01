@@ -2,7 +2,9 @@
     I.ManualReportController = ["$scope", "$location", "timeReportManager", "loginManager", "siteService", "configuration", function ($scope, $location, timeReportManager, loginManager, siteService, configuration) {
         loginManager.getCurrentUser().then(function (user) {
             $scope.siteId = user.SiteId;
-            siteService.getById(user.SiteId).then(loadSite);
+            if ($scope.siteId) {
+                siteService.getById(user.SiteId).then(loadSite);
+            }
         });
 
         function loadSite(site) {

@@ -1,5 +1,12 @@
 (function (S, I) {
-    I.ManagerReportController = ["$scope", "$location", "eventReportManager", "employeeService", "timeReportManager", "loginManager","$timeout",
+    I.ManagerReportController = [
+        "$scope",
+        "$location",
+        "eventReportManager",
+        "employeeService",
+        "timeReportManager",
+        "loginManager",
+        "$timeout",
         function ($scope, $location, eventReportManager, employeeService, timeReportManager, loginManager, $timeout) {
             var selectedEventId = $scope.$root.lastSelectedEventId;
             function loadEvents(userid) {
@@ -62,13 +69,26 @@
                 $scope.$root.lastSelectedEventId = value;
             });
 
-            $scope.$watch("reportBarCode", function (employeeCode) {
-                employeeService.getEmployeeByCode($scope.userid, employeeCode).then(function (item) {
-                    if (employeeCode) {
-                        $scope.employee = item;
-                    }
-                });
+            $scope.$on("Simple.BarcodeScanned", function(e, args) {
+                onBarcodeScanned(args.barCode, args.context);
             });
+
+            function onBarcodeScanned(barCode, context) {
+                $scope.notifyProgressStarted()
+                    .then(function () {
+                        $scope.employee = null;
+                        return employeeService.getEmployeeByCode($scope.userid, barCode);
+                    }).then(function (item) {
+                        
+                        if (barCode && item.Id) {
+                            $scope.employee = item;
+                        } else {
+                            $scope.scanError = "UnknownEmployee";
+                        }
+                    })
+                    .finally($scope.notifyProgressCompleted);
+                
+            }
 
             $scope.isEnter = true;
 

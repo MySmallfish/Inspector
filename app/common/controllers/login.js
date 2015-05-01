@@ -1,5 +1,10 @@
 (function(S, I) {
-    I.LoginController = function($scope, loginManager) {
+    I.LoginController = [
+        "$scope",
+        "loginManager",
+        "storageService",
+        "$log",
+        function ($scope, loginManager, storageService, $log) {
 
         $scope.changeHeader("Login");
 
@@ -13,12 +18,9 @@
                     if (!phoneNumber) {
                         location.href = "#/RegisterPhoneNumber";
                     } else {
-                        console.log("user.user.PhoneNumber != phoneNumber.number", user.user.PhoneNumber, phoneNumber.number);
                         if (user.user.PhoneNumber != phoneNumber.number) {
-
                             loginManager.logout().then(function() {
                                 $scope.loginError = "InvalidPhoneNumber";
-                                
                             });
                         } else {
                             navigateHome();
@@ -30,19 +32,34 @@
             }
         }
 
-        loginManager.isUserLoggedIn().then(navigate);
+        
+        loginManager.isUserLoggedIn().then(navigate, loadLastUser);
+
+        function loadLastUser() {
+            storageService.prefix("Inspector").local("LastUserName").then(function(userName) {
+                $scope.Username = userName;
+
+            });
+        }
+
+        function storeLastUser(context) {
+            storageService.prefix("Inspector").local("LastUserName", $scope.Username);
+            return context;
+        }
 
         $scope.login = function() {
             var authResult = loginManager.authenticate($scope.Username, $scope.Password);
 
             function loginUser(userInfo) {
+                
                 return loginManager.login({
                     user: userInfo,
                     loggedInAt: moment().format("YYYY-MM-DD HH:mm")
-                }).then(navigate);
+                }).then(storeLastUser).then(navigate);
             }
 
-            function authenticationFailed() {
+            function authenticationFailed(e) {
+                $log.error("Authentication failed", e);
                 $scope.loginError = "AuthenticationFailed";
             }
 
@@ -52,5 +69,5 @@
 
 
         };
-    };
+    }];
 })(Simple, Simple.Inspector);

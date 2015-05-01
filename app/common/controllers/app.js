@@ -7,9 +7,16 @@
             "loginManager",
             "$location",
             "network",
-            function ($scope, $q, $window, textResource, loginManager, $location, network) {
-                var anonymousAllowed = ["views/login.html", "views/configuration.html"];
-                var navigateToLogin = function() {
+            "$log",
+            function ($scope, $q, $window, textResource, loginManager, $location, network, $log) {
+
+                $log.info("Loading application controller...");
+
+                $scope.$on("Simple.RequestAuthorizationFailed", onRequestAuthorizationFailed);
+
+                navigateToLogin();
+
+                function navigateToLogin() {
                     $location.path("/Login");
                 };
 
@@ -17,13 +24,18 @@
                     event.stopPropagation();
                 };
 
+                function onRequestAuthorizationFailed(e) {
+                    $log.log("Request authorization failed.", e);
+                    logout();
+                }
+
                 function setHeader(info) {
                     return function () {
                         $scope.changeHeader(info);
                     };
                 }
 
-                $scope.$on("Simple.RequestAuthorizationFailed", logout);
+                
                 function logout() {
                     onProgressStarted();
                     loginManager.logout().then(function () {
@@ -31,21 +43,6 @@
                         onProgressCompleted();
                     });
                 };
-
-                function onRouteChangeStart(event, next, current) {
-                    loginManager.isUserLoggedIn().then(function () {
-                        $scope.isLoggedIn = true;
-                    }, function () {
-                        $scope.isLoggedIn = false;
-                        // no logged user, we should be going to #login
-                        if (anonymousAllowed.indexOf(next.templateUrl) >= 0) {
-                            // already going to #login, no redirect needed
-                        } else {
-                            // not going to #login, we should redirect now
-                            navigateToLogin();
-                        }
-                    });
-                }
 
                 function changeHeader(info) {
                     if (typeof info == "string") {
@@ -109,11 +106,11 @@
                     bind("progress-started", onProgressStarted);
                     bind("progress-completed", onProgressCompleted);
                     bind("$routeChangeSuccess", onRouteChangeSuccess);
-                    bind("$routeChangeStart", onRouteChangeStart);
+                    
                 }
 
                 function logError(e) {
-                    console.error("Uncaught Error", e);
+                    $log.error("Uncaught Error", e);
                 }
 
                 function goBack() {

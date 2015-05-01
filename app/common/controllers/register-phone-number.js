@@ -2,7 +2,8 @@
     I.RegisterPhoneNumberController = [
         "$scope",
         "$location",
-        "loginManager", function ($scope, $location, loginManager) {
+        "loginManager",
+        function ($scope, $location, loginManager) {
             $scope.changeHeader("RegisterPhoneTitle");
             function register() {
                 var number = $scope.phoneNumber;

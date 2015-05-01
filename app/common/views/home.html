@@ -1,25 +1,136 @@
-﻿
+﻿<h1>{{title}}</h1>
 <div class="loading" ng-show="loading"></div>
-<div ng-show="hasBarcodePermissions">
-    <h3>{{"ReportHeader"|l10n}}</h3>
+<div>
+    <div ng-show="hasBarcodePermissions">
+        <h3>{{"ReportHeader"|l10n}}</h3>
+
+        <div class="row">
+            <div class="col-xs-1">&nbsp;</div>
+            <div class="col-xs-10">
+                <div ng-show="!scanSupported">
+                    <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="hasPatrolPermissions">
+        <div class="alert alert-danger" ng-if="patrolSiteError">
+            {{patrolSiteError|l10n}}
+            <button type="button" class="close" ng-click="reportError = null">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="patrol-popup" ng-if="patrolSite">
+            <h3>{{"PatrolSiteScanned"|l10n}}</h3>
+            <dl>
+                <dt>{{"Site"|l10n}}</dt>
+                <dd>{{patrolSite.Name}}</dd>
+                <dt ng-if="patrolSite.Notes">{{"Notes"|l10n}}</dt>
+                <dd ng-if="patrolSite.Notes">{{patrolSite.Notes}}</dd>
+                <dt ng-if="patrolSite.NextSite">{{"NextSite"|l10n}}</dt>
+                <dd ng-if="patrolSite.NextSite">{{patrolSite.NextSite}}</dd>
+            </dl>
+            <div class="row">
+                <div class="col-xs-8">&nbsp;</div>
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-block btn-primary" ng-click="approvePatrolScan()">{{"Ok"|l10n}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2">&nbsp;</div>
+            <div class="col-xs-8">
+                <button ng-if="!patrolSite" type="button" class="btn btn-block btn-large btn-high btn-success" ng-click="patrolScan()">{{"PatrolScan"|l10n}}</button>
+            </div>
+            <div class="col-xs-2">&nbsp;</div>
+        </div> 
+        <div class="row">
+            <div class="col-xs-2">&nbsp;</div>
+            <div class="col-xs-8">
+                <button ng-if="!patrolSite && flashSupported" type="button" class="btn btn-block btn-large btn-high btn-default" ng-click="toggleFlash()">{{"ToggleFlash"|l10n}}</button>
+            </div>
+            <div class="col-xs-2">&nbsp;</div>
+        </div>
+        <div ng-if="reportingIncident">
+            <h4>{{"ReportIncident"|l10n}}</h4>
+            <div class="row">
+                <div class="col-xs-2">{{"Description"|l10n}}</div>
+                <div class="col-xs-8">
+                    <input type="text" ng-disabled="sendingIncidentReport" class="form-control" ng-model="incidentDescription" maxlength="100" />
+                </div>
+                <div class="col-xs-2"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-3">
+                    <button type="button"
+                            class="btn btn-block btn-warning" ng-click="cancelIncidentReporting()">
+                        {{"Cancel"|l10n}}
+                    </button>
+
+                </div>
+                <div class="col-xs-3">
+                    <button type="button"
+                            class="btn btn-block btn-warning" 
+                            ng-hide="true"
+                            ng-click="takePicture()">
+                        <i class="fa fa-camera"></i>
+                    </button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" ng-disabled="!incidentDescription || sendingIncidentReport" 
+                            class="btn btn-block btn-warning" ng-click="reportIncident(incidentDescription)">
+                        <i ng-if="sendingIncidentReport" class="fa fa-circle-o-notch fa-spin"></i>
+                        {{"Report"|l10n}}
+                    </button>
+                </div>
+                <div class="col-xs-2"></div>
+            </div>
+        </div>
+        <div class="row" ng-if="!reportingIncident">
+            <div class="col-xs-2">&nbsp;</div>
+            <div class="col-xs-8">
+                <button type="button" class="btn btn-block btn-large btn-high btn-warning" ng-click="startReporting()">{{"ReportIncident"|l10n}}</button>
+            </div>
+            <div class="col-xs-2">&nbsp;</div>
+        </div>
+        <div class="row" ng-if="!reportingIncident">
+            <div class="col-xs-2">&nbsp;</div>
+            <div class="col-xs-8">
+                <button type="button" ng-disabled="sendingIncidentReport" class="btn btn-block btn-large btn-high btn-danger" ng-click="reportIncident()">
+                    <i ng-if="sendingIncidentReport" class="fa fa-circle-o-notch fa-spin"></i>
+                    {{"PanicButton"|l10n}}
+                </button>
+            </div>
+            <div class="col-xs-2">&nbsp;</div>
+        </div>
+    </div>
+    <div ng-show="hasSiteReport">
+        <h3 ng-show="siteId">{{"ManualReportForSite"|l10n}}{{siteName || "..."}}</h3>
+        <div class="row">
+            <div class="col-xs-1">&nbsp;</div>
+            <div class="col-xs-5">
+                <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!siteName" ng-click="enterManual()">{{"Enter"|l10n}}</button>
+            </div>
+            <div class="col-xs-5">
+                <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!siteName" ng-click="exitManual()">{{"Exit"|l10n}}</button>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-1">&nbsp;</div>
-        <div class="col-xs-10">
-            <div ng-show="!scanSupported">
-                <s-scan-barcode id="simulated-report" barcode="barCode"></s-scan-barcode>
-                <br />
+        <div class="col-xs-10 form-group">
+            <div class="alert alert-danger" ng-show="reportError">
+                {{reportError|l10n}}
+                <button type="button" class="close" ng-click="reportError = null">
+                    <span>×</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-1">&nbsp;</div>
-        <div class="col-xs-10 form-group">
-            <div class="alert alert-danger" ng-show="reportError">{{reportError|l10n}}</div>
-        </div>
-    </div>
-
-    <div class="row">
+    <div class="row" ng-show="hasBarcodePermissions">
         <div class="col-xs-1">&nbsp;</div>
         <div class="col-xs-5">
             <button type="button" class="btn btn-block btn-large btn-success" ng-disabled="!scanSupported && !barCode" ng-click="scanEnter()">{{"Enter"|l10n}}</button>
@@ -28,22 +139,30 @@
             <button type="button" class="btn btn-block btn-large btn-danger" ng-disabled="!scanSupported && !barCode" ng-click="scanExit()">{{"Exit"|l10n}}</button>
         </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         <div class="col-xs-2"></div>
-        <div class="col-xs-8"><div ng-show="reportApproved" class="alert alert-success">{{"ReportApproved"|l10n}}</div></div>
+        <div class="col-xs-8">
+            <div ng-show="reportApproved" class="alert alert-success">
+                {{"ReportApproved"|l10n}}
+                <button type="button" class="close" ng-click="reportApproved= null">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        </div>
     </div>
-    
+
 </div>
 
 <!--<h3>{{"ActionsHeader"|l10n}}</h3>-->
 <div class="row">
     <div class="col-xs-2">&nbsp;</div>
     <div class="col-xs-8">
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-show="hasManualPermissions">{{"ManualReport"|l10n}}</button>
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-show="hasManagerPermissions">{{"ManagerReport"|l10n}}</button>
-        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-show="hasBarcodePermissions || hasManualPermissions" ng-disabled="!reports">{{"TimeReports"|l10n}}</button>
-        <button type="button" class="btn btn-warning btn-large btn-block" ng-click="sendFailedReports()" ng-show="hasUnsentReports">{{"SendReports"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManualReport()" ng-if="hasManualPermissions && !hasSiteReport">{{"ManualReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToManagerReport()" ng-if="hasManagerPermissions">{{"ManagerReport"|l10n}}</button>
+        <button type="button" class="btn btn-default btn-large btn-block" ng-click="navigateToReports()" ng-if="(hasBarcodePermissions || hasManualPermissions) && hasUnsentReports">{{"TimeReports"|l10n}}</button>
+
+        <button type="button" class="btn btn-warning btn-large btn-block" ng-click="sendFailedReports()" ng-if="hasUnsentReports">{{"SendReports"|l10n}}</button>
     </div>
 </div>
-<div class="alert alert-info" ng-show="!hasManualPermissions && !hasManagerPermissions && !hasBarcodePermissions">{{"NoPermissions"|l10n}}</div>
+<div class="alert alert-info" ng-show="!hasManualPermissions && !hasManagerPermissions && !hasBarcodePermissions && !hasPatrolPermissions">{{"NoPermissions"|l10n}}</div>

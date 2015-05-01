@@ -14,7 +14,7 @@
             timeReportManager.approve(uniqueId).then(function (item) {
                 
                 $location.path("TimeReports");
-            }); // ERROR??
+            }); 
         };
 
         $scope.repair = function () {

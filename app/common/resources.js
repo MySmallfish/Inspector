@@ -1,8 +1,24 @@
 ﻿(function (S, I) {
 
     var simplyLogModule = angular.module("Simple.Inspector.InspectorApp");
-    simplyLogModule.run(function (textResource) {
+    simplyLogModule.run(["textResource", function (textResource) {
         textResource.load("he-IL", {
+            "PleaseSelectEvent": "נא לבחור אירוע מהרשימה",
+            "NoImage":"ללא תמונה",
+            "UnknownEmployee":"לא נמצא עובד עבור הקוד שנסרק.",
+            "PatrolBarcodeNotScanned": "לא נסרק קוד עמדה או קוד לא תקין",
+            "PatrolSiteNotFound":"לא נמצאה עמדה תואמת",
+            "Report": "דווח",
+            "Cancel": "בטל",
+            "Description":"תאור",
+            "PatrolScan": "סרוק עמדה",
+            "ReportIncident": "דיווח אירוע",
+            "PanicButton": "דיווח חירום",
+            "ToggleFlash":"הדלק/כבה פנס",
+            "Ok": "אישור",
+            "PatrolSiteScanned": "העמדה נסרקה בהצלחה",
+            "Notes": "הוראות לעמדה",
+            "NextSite":"העמדה הבאה",
             "RegisterPhoneNumberHint":"על מנת לדווח מהאפליקציה יש להרשם תחילה עם מספר הטלפון. משיסתיים הרישום תקבל הודעת SMS למכשירך עם קוד ייחודי בן 6 ספרות. יש להזין את הקוד במקום המיועד וללחוץ על 'אישור'.",
             "EnterYourPhoneNumber": "נא הזן את מספר הטלפון ממנו מתבצע הדיווח:",
             "Register": "הרשם",
@@ -52,6 +68,6 @@
             "ReportApproved": "הדיווח נקלט בהצלחה.",
             "NoPermissions":"לא הוגדרו הרשאות לדיווח. נא פנה לתמיכה לקבלת הרשאות מתאימות."
         });
-    });
+    }]);
 
 })(Simple, Simple.Inspector);

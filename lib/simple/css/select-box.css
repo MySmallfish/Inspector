@@ -52,7 +52,7 @@
 .select-box input[type=text]:focus {
     width: 100%;
     height: 100%;
-    font-size: 190%;
+    font-size: 16pt;
     line-height: 48px;
     border: none;
     box-shadow: none;

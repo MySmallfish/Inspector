@@ -1,0 +1,25 @@
+<dl ng-show="timeReport">
+    <dt>{{"Date"|l10n}}:</dt>
+    <dd>{{ timeReport.Date|date:"dd/MM/yyyy" }}</dd>
+    <dt>{{"Time"|l10n}}:</dt>
+    <dd>{{ timeReport.Date|date:"HH:mm" }}</dd>
+    <dt>{{"Type"|l10n}}:</dt>
+    <dd>{{(timeReport.IsEnter ? "Enter":"Exit")|l10n}}</dd>
+    <dt>{{"Site"|l10n}}:</dt>
+    <dd>{{ timeReport.Site | entityDescription }}</dd>    
+    <!--<dt>{{"Employee"|l10n}}:</dt>
+    <dd>{{ timeReport.Employee | entityDescription }}</dd>-->    
+    <dt>{{"BarCode"|l10n}}:</dt>
+    <dd>{{ timeReport.BarCode }}</dd>    
+    <dt>{{"Location"|l10n}}:</dt>
+    <dd>{{ timeReport.Location | gpsLocation }}</dd>    
+</dl>
+<div class="row">
+    <div class="col-xs-6">
+        <button type="button" class="btn btn-block btn-danger" ng-click="repair()">{{"Repair"|l10n}}</button>
+    </div>
+    <div class="col-xs-6">
+        <button type="button" class="btn btn-block btn-success" ng-click="approve()">{{"Approve"|l10n}}</button>
+    </div>
+    
+</div>

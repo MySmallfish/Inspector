@@ -1,0 +1,49 @@
+<div class="numpad-host">
+    <div>
+        <input type="text" ng-model="number"/>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">3</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">2</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">1</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">6</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">5</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">4</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">9</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">8</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">7</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="!number">&lt;</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-digit btn-block" ng-disabled="numpadDisabled">0</button>
+        </div>
+        <div class="col-xs-4">
+            <button id="btn-amount-clear" class="btn btn-block btn-digit">C</button>
+        </div>
+    </div>
+</div>

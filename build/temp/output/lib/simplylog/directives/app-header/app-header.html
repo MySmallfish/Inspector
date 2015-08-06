@@ -1,0 +1,12 @@
+﻿<header>
+    <div class="logo"></div>
+    <div class="header-button header-back fa fa-3x fa-arrow-right" ng-show="!pageInfo || pageInfo.back" simple-back></div>
+    <div class="title" ng-class="{'short': !(!pageInfo || pageInfo.back) }">{{header}}</div>
+    <div class="header-buttons">
+        <!--<div class="header-button fa fa-3x fa-cog" ng-show="pageInfo && !pageInfo.home" ng-click="navigateToConfiguration()"></div>-->
+        <div class="header-button fa fa-3x fa-sign-out" ng-show="pageInfo && pageInfo.logout" ng-click="logout()"></div>
+        <div class="header-button fa fa-3x fa-home" ng-show="!pageInfo || pageInfo.home" simple-home></div>
+        <div class="header-button fa fa-3x fa-refresh" ng-class="{ 'fa-spin': isInProgress }" ng-click="refresh()" ng-show="isOnline && (isInProgress || (pageInfo && pageInfo.refresh))"></div>
+        <div class="header-button fa fa-3x fa-warning" ng-show="!isOnline"></div>
+    </div>
+</header>

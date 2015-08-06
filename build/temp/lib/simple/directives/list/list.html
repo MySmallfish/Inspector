@@ -1,0 +1,15 @@
+﻿<div >
+    <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="search" placeholder="{{'Search'|l10n}}" />
+    </label>
+    <div class="alert alert-info" ng-if="!showSpinner && !items.length">{{"NoItemsMessage"|l10n}}</div>
+    <div class="list" ng-class="{'small': small == ''}">
+        <a ng-repeat="item in items | filter:search | orderBy:(text || 'Text')"
+           ng-click="select(item, $event)" class="item"
+           ng-class="{'active': isSelected(item) }">
+            <div class="color-hint" ng-if="useColorHint" ng-style="{'background-color': item.Color }"></div>
+            {{item[text || 'Text']}}
+        </a>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿<div class="select-box hierarchical-select" ng-class="{ open: displayChildren }">
+    <div class="hd">
+        <div class="button up" ng-disabled="!selectedItem" ng-click="navigateUp()">
+            <i class="fa fa-level-up"></i>
+        </div>
+        <div class="text">
+            {{selectedItem.Text}}
+        </div>
+        <div class="button select" ng-click="finishSelection()">
+            <i class="fa" ng-class="{'fa-caret-down': !displayChildren, 'fa-caret-up': displayChildren}"></i>
+        </div>
+    </div>
+    <div class="bd" ng-if="items.length && displayChildren">
+        <ul>
+            <li class="parent-item" ng-style="{ 'text-indent': 10 * $index}" ng-repeat="parent in parents" data-key="{{parent.Key}}">{{parent.Text}}</li>
+        </ul>
+        <ul>
+            <li class="item" ng-repeat="item in items" ng-click="select(item)" data-key="{{item.Key}}">{{item.Text}}</li>
+        </ul>
+    </div>
+</div>

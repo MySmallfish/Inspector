@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="he-IL" ng-app="Simple.Inspector.InspectorApp"><head><title>SimplyLog Mobile</title><meta charset="utf-8"><meta name="credit" content="י.ל.מ פתרונות בע&quot;מ"><meta name="format-detection" content="telephone=no"><meta name="version" content="1.1.21"><meta name="auto-commit" content="true"><meta name="display-successful" content="false"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><meta name="base-url" content="http://inspector.ylm.co.il/InspectorService/Services/InspectorClientApi.svc/js"><link rel="stylesheet" type="text/css" href="app/css/app.min.css"><script type="text/javascript" src="phonegap.js"></script><script type="text/javascript" src="barcodescanner.js"></script></head><body ng-controller="AppCtrl" class="rtl"><div><app-header></app-header><div ng-show="isInProgress" class="loading-icon"><div class="loading"></div><h3 ng-bind="(&quot;Loading&quot;|l10n) + &quot;...&quot;"></h3></div><div data-ng-view="" class="container"></div></div><script type="text/javascript" src="app/js/app.js"></script><script type="text/javascript" src="http://cloudfront.loggly.com/js/loggly.tracker.js"></script><script type="text/javascript">function whenReady() {
+if (navigator.splashscreen) {
+navigator.splashscreen.show();
+}
+if (typeof StatusBar !== "undefined") {
+StatusBar.overlaysWebView(false);
+}
+document.addEventListener("backbutton", function() {
+if (window.plugins.flashlight){
+window.plugins.flashlight.switchOff(exitApp, exitApp);
+}
+}, false);
+
+function exitApp() {
+navigator.app.exitApp();
+}
+
+setTimeout(function () {
+if (navigator.splashscreen) {
+navigator.splashscreen.hide();
+}
+}, 750);
+
+}
+document.addEventListener("deviceready", whenReady, false);</script></body></html>

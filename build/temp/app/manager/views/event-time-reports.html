@@ -1,0 +1,18 @@
+﻿<h4 class="event-date">{{event.name}} : {{event.date}}</h4>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>{{"Employee"|l10n}}</th>
+            <th>{{"Enter"|l10n}}</th>
+            <th>{{"Exit"|l10n}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="report in timeReports|orderBy:Date:true track by $index">
+            <td>{{report.EmployeeName}}</td>
+            <td>{{report.EnterTime}}</td>
+            <td>{{report.ExitTime}}</td>
+        </tr>
+    </tbody>
+</table>

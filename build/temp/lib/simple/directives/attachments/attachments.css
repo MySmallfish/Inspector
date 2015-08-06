@@ -1,0 +1,86 @@
+﻿.attachments {
+    margin: 8px;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    text-align: center;
+
+}
+
+.rtl .attachments {
+    
+}
+
+.attachments .attachment {
+    display: block;
+    
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.attachments .attachment {
+    max-width: 100%;
+    max-height: 120px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.attachment {
+    position: relative;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.delete-confirm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    color: red;
+    text-align: center;
+    /*font-size: 45px;*/
+    font-size: 16px;
+    opacity: .7;
+    /*line-height: 92px;*/
+    line-height: 24px;
+}
+.rtl .delete-confirm {
+    left: auto;
+    right: 0;
+}
+
+.delete-in-progress .delete-confirm {
+    display: block;
+}
+
+.attachments .attachment img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*.add-attachment {
+    background-color: #BBB;
+    color: #444;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    text-align: center;
+}*/
+
+
+.inner-button {
+    min-width: 48px;
+    font-size: 32px;
+    line-height: normal;
+    cursor: pointer;
+    display: inline-block;
+    width: 48%;
+}

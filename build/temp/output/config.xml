@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "il.co.ylm.inspector"
+        version   = "1.1.21">
+  <name>Inspector</name>
+
+  <description>
+    Inspector
+  </description>
+
+  <author href="http://www.ylm.co.il" email="y@ylm.co.il">
+    YLM Solutions LTD.
+  </author>
+
+  <feature name="http://api.phonegap.com/1.0/device" />
+  <feature name="http://api.phonegap.com/1.0/camera"/>
+  
+  <feature name="http://api.phonegap.com/1.0/file"/>
+  <feature name="http://api.phonegap.com/1.0/geolocation"/>
+  <feature name="http://api.phonegap.com/1.0/media"/>
+  <feature name="http://api.phonegap.com/1.0/network"/>
+  <feature name="http://api.phonegap.com/1.0/notification"/>
+
+  <!-- Do not auto hide splash on iOS -->
+  <preference name="AutoHideSplashScreen" value="false" />
+
+  <!-- Do not auto hide splash on Android -->
+  <preference name="splash-screen-duration" value="10000"/>
+  <preference name="deployment-target" value="6.0" />
+
+  <!--<preference name="phonegap-version" value="3.5.0" />-->
+  <preference name="orientation"      value="portrait" />
+  <preference name="target-device"    value="universal" />
+  <preference name="fullscreen"       value="false" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="detect-data-types" value="false" />
+  <access origin="*" />
+  <icon src="assets/app-icons/ios/Icon.png" />
+  <icon src="assets/app-icons/ios/Icon.png"            gap:platform="ios"        width="57" height="57" />
+  <icon src="assets/app-icons/ios/Icon-72.png"            gap:platform="ios"        width="72" height="72" />
+  <icon src="assets/app-icons/ios/Icon@2x.png"         gap:platform="ios"        width="114" height="114" />
+  <icon src="assets/app-icons/ios/Icon-72@2x.png"         gap:platform="ios"        width="144" height="144" />
+
+  <icon src="assets/app-icons/android/drawable-ldpi/ic_launcher.png"   gap:platform="android"    gap:density="ldpi" />
+  <icon src="assets/app-icons/android/drawable-mdpi/ic_launcher.png"   gap:platform="android"    gap:density="mdpi" />
+  <icon src="assets/app-icons/android/drawable-hdpi/ic_launcher.png"   gap:platform="android"    gap:density="hdpi" />
+  <icon src="assets/app-icons/android/drawable-xdpi/ic_launcher.png"   gap:platform="android"    gap:density="xdpi" />
+  <icon src="assets/app-icons/android/drawable-xxdpi/ic_launcher.png"   gap:platform="android"    gap:density="xxdpi" />
+
+  <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+    <string>11119</string>
+  </gap:config-file>
+
+  <gap:splash src="assets/splash/android/images/res-notlong-port-xhdpi/default.png"  gap:platform="android" />
+
+  <gap:splash src="assets/splash/iphone/Default.png" gap:platform="ios" width="320" height="480" />
+  <gap:splash src="assets/splash/iphone/Default@2x.png" gap:platform="ios" width="640" height="960" />
+  <gap:splash src="assets/splash/iphone/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+
+  <gap:splash src="assets/splash/iphone/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
+  <gap:splash src="assets/splash/iphone/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+  <gap:splash src="assets/splash/iphone/Default-Landscape.png" gap:platform="ios" width="2048" height="1536" />
+  <gap:splash src="assets/splash/iphone/Default-Portrait.png" gap:platform="ios" width="1536" height="2048" />
+
+  <!-- retina iPad support: PhoneGap 2.5.0+ only -->
+  <gap:splash src="splash/ios/ipad-retina-landscape.png" gap:platform="ios" width="2048" height="1496" />
+  <gap:splash src="splash/ios/ipad-retina-portrait.png" gap:platform="ios" width="1536" height="2008" />
+
+  <gap:plugin name="org.apache.cordova.splashscreen" />
+  <gap:plugin name="org.apache.cordova.file" />
+  <gap:plugin name="org.apache.cordova.file-transfer" />
+  <gap:plugin name="org.apache.cordova.camera" />
+  <gap:plugin name="org.apache.cordova.geolocation" />
+  <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+  <gap:plugin name="com.phonegap.plugin.statusbar" />
+  <gap:plugin name="nl.x-services.plugins.flashlight" />
+</widget>

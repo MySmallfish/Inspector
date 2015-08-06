@@ -1,0 +1,12 @@
+﻿<div class="wizard" ng-swipe-left="tryMoveBack()" ng-swipe-right="tryMoveNext()" ng-animate="'wave'">
+    <div ng-transclude></div>
+
+    <div class="stepIndicators" ng-if="displayHints !== 'false'">
+        <ul>
+            <li ng-repeat="indicator in steps"
+                ng-class="{'invalid': indicator.invalid,'filled':indicator.filled, 'current': indicator.index == currentStep }"
+                ng-click="chooseStep(indicator.index)">
+            </li>
+        </ul>
+    </div>
+</div>

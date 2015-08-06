@@ -1,0 +1,50 @@
+﻿doctype html
+html(lang="he-IL",ng-app="Simple.Inspector.InspectorApp")
+  head
+    title="SimplyLog Mobile"
+    meta(charset="utf-8")
+    meta(name="credit", content='י.ל.מ פתרונות בע"מ')
+    meta(name="format-detection", content="telephone=no")
+    meta(name="version", content=version)
+    meta(name="auto-commit", content="true")
+    meta(name="display-successful", content="false")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
+    meta(name="base-url", content="http://inspector.ylm.co.il/InspectorService/Services/InspectorClientApi.svc/js")
+    link(rel="stylesheet",type="text/css",href="app/css/app.min.css")
+    script(type="text/javascript",src="phonegap.js")
+    script(type="text/javascript",src="barcodescanner.js")
+  body(class="rtl", "ng-controller"="AppCtrl")
+    div
+      app-header
+      div(class="loading-icon","ng-show"="isInProgress")
+        div(class="loading")
+        h3(ng-bind='("Loading"|l10n) + "..."')
+      div(class="container","data-ng-view"="")
+    script(type="text/javascript",src="app/js/app.js")
+    script(type="text/javascript",src="http://cloudfront.loggly.com/js/loggly.tracker.js")
+    script(type="text/javascript").
+        function whenReady() {
+        if (navigator.splashscreen) {
+        navigator.splashscreen.show();
+        }
+        if (typeof StatusBar !== "undefined") {
+        StatusBar.overlaysWebView(false);
+        }
+        document.addEventListener("backbutton", function() {
+        if (window.plugins.flashlight){
+        window.plugins.flashlight.switchOff(exitApp, exitApp);
+        }
+        }, false);
+    
+        function exitApp() {
+        navigator.app.exitApp();
+        }
+            
+        setTimeout(function () {
+        if (navigator.splashscreen) {
+        navigator.splashscreen.hide();
+        }
+        }, 750);
+
+        }
+        document.addEventListener("deviceready", whenReady, false);
